@@ -15,7 +15,7 @@ const SmallDiscount = ({ image }) => {
               <button>DISCOVER NOW</button>
           </div>
 
-          <div className="bg-slate-400 w-[38rem] h-[17.5rem] absolute opacity-0 border-4 border-slate-600 hover:opacity-20 duration-700 z-[1]"></div>
+          <div className="bg-slate-400 w-[38rem] h-[17.5rem] absolute opacity-0 border-4 border-slate-600 hover:opacity-30 duration-700 z-[1]"></div>
       </div>
     )
   }

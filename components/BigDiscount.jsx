@@ -17,7 +17,7 @@ const BigDiscount = () => {
             <button>DISCOVER NOW</button>
         </div>
 
-        <div className="bg-slate-400 w-[27rem] h-[38rem] absolute opacity-0 border-4 border-slate-600 hover:opacity-20 duration-700 z-[1]"></div>
+        <div className="bg-slate-400 w-[27rem] h-[38rem] absolute opacity-0 border-4 border-slate-600 hover:opacity-30 duration-700 z-[1]"></div>
     </div>
   )
 }

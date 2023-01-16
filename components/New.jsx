@@ -5,7 +5,7 @@ import Trendy_1 from '../assets/trendy-1.jpg';
 
 const New = () => {
   return (
-    <div className="w-full h-screen mt-16">
+    <div className="w-full min-h-screen mt-16">
         <div className="flex flex-col justify-center items-center">
           <h3 className="text-3xl font-bold">New Arrivals</h3>
           <ul className="flex mt-4">
