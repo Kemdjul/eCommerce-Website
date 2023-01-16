@@ -3,6 +3,8 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from "keen-slider/react";
 import Image from 'next/image';
 
+import Vimeo from '@u-wave/react-vimeo';
+
 import Banner1 from '../assets/banner-1.jpg';
 import Banner2 from '../assets/banner-2.jpg';
 
@@ -54,6 +56,13 @@ const HeaderBanner = () => {
   return (
     <div className="w-full h-screen bg-slate-400 flex flex-col justify-center items-center">
       <div ref={bannerRef} className="absolute top-0 left-0 w-full h-screen keen-slider">
+        <div>
+          <Vimeo 
+            video="698965338"
+
+          />
+        </div>
+        
         <div>
           <Image src={Banner1} className="keen-slider__slide w-full h-screen object-cover" />
           <div className="absolute left-1/3 top-1/3 z-[1]">

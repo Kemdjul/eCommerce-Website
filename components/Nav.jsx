@@ -7,16 +7,15 @@ import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from 'react-ic
 
 const Nav = () => {
   return (
-    <nav className="w-full h-16 z-10 flex justify-around items-center bg-transparent text-white fixed">
+    <nav className="w-full h-16 z-10 flex justify-around items-center bg-transparent text-white fixed font-Poppins">
       <Image src={Logo} alt="logo" />
 
       <ul className="flex">
-        <p className="p-4">Home</p>
-        <p className="p-4">Shop</p>
-        <p className="p-4">Product</p>
-        <p className="p-4">Pages</p>
-        <p className="p-4">Blog</p>
-        <p className="p-4">Elements</p>
+        <p className="p-4">POČETNA</p>
+        <p className="p-4">TRGOVINA</p>
+        <p className="p-4">EMISIJE</p>
+        <p className="p-4">ČLANCI</p>
+        <p className="p-4">KONTAKT</p>
       </ul>
 
       <div className="flex items-center">
