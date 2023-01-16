@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from "keen-slider/react";
 import Image from 'next/image';
-import Vimeo from '@u-wave/react-vimeo';
+import { client } from '../lib/client';
 
 import Banner1 from '../assets/banner-1.jpg';
 import Banner2 from '../assets/banner-2.jpg';
@@ -102,6 +102,15 @@ const HeaderBanner = () => {
         )}
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  const productQuery = '*'[_type == "product"];
+  const products = await client.fetch(productQuery);
+
+  return {
+    props: {productQuery},
+  }
 }
 
 export default HeaderBanner
