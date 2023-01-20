@@ -13,8 +13,8 @@ export default {
         }
       },
       { 
-        name: 'name',
-        title: 'Name',
+        name: 'naziv',
+        title: 'Naziv',
         type: 'string',
       },
       { 
@@ -27,19 +27,37 @@ export default {
         }
       },
       { 
-        name: 'price',
-        title: 'Price',
+        name: 'cijena',
+        title: 'Cijena',
         type: 'number',
       },
       { 
-        name: 'details',
-        title: 'Details',
+        name: 'opis',
+        title: 'Opis',
         type: 'string',
       },
       {
-        name: 'color',
-        title: 'Color',
-        type: 'string',
-      }
+        name: 'boja',
+        title: 'Boja',
+        type: 'array',
+        of: [{ type: 'string' }],
+        options: {
+          hotspot: true,
+        },
+      },
+      {
+        name: 'velicina',
+        title: 'Veličina',
+        type: 'array',
+        of: [{ type: 'string' }],
+        options: {
+          hotspot: true,
+        },
+      },
+      {
+        name: 'izdvojen',
+        title: 'Izdvojiti',
+        type: 'boolean',
+      },
     ]
   }

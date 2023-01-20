@@ -6,8 +6,7 @@ export default {
       {
         name: 'image',
         title: 'Image',
-        type: 'array',
-        of: [{ type: 'image' }],
+        type: 'image',
         options: {
           hotspot: true,
         },
@@ -30,6 +29,11 @@ export default {
       {
         name: 'smallText2',
         title: 'Small Text 2',
+        type: 'string',
+      },
+      {
+        name: 'buttonText',
+        title: 'Button Text',
         type: 'string',
       },
     ],

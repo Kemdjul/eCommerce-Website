@@ -10,7 +10,6 @@ const Trgovina = () => {
     <div>
         <Nav />
         <TrgovinaHeader />
-        <Navigacija />
         <ListaProdukata />
     </div>
   )

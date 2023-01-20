@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 
-import Placeholder from '../../assets/video-bg.jpg';
+import Banner from '../../assets/emisije-banner.jpg';
 
 const Video = () => {
   return (
-    <div className="bg-gray-600 w-full h-[37.5rem] flex justify-center items-center">
-        <Image src={Placeholder} className="w-full h-[37.5rem] object-cover absolute" />
+    <div className="bg-gray-600 w-full h-[37.5rem] mt-8 flex justify-center items-center">
+        <Image src={Banner} className="w-full h-[37.5rem] object-cover absolute" />
         
         <div className="flex flex-col justify-center items-center text-center z-10 relative text-white">
           <h2 className="text-[4rem] font-[600]">NOVE EMISIJE</h2>

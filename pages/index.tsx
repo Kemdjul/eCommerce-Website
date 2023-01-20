@@ -3,13 +3,15 @@ import styles from '../../styles/Home.module.css';
 
 import Nav from '../components/Nav';
 import HeaderBanner from '../components/homepage/HeaderBanner';
-import Trendy from '../components/homepage/Trendy';
-import Video from '../components/homepage/Video';
+import IzdvojeniProdukti from '../components/homepage/IzdvojeniProdukti';
+import EmisijeBanner from '../components/homepage/EmisijeBanner';
 import Partneri from '../components/homepage/Partneri';
 import Kategorije from '../components/homepage/Kategorije';
 import New from '../components/homepage/New';
+import Vita from '../components/homepage/Vita';
 import Social from '../components/homepage/Social';
 import Blogs from '../components/homepage/Blogs';
+import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 
 import { client } from '../lib/client';
@@ -27,13 +29,14 @@ const Home = ({ banners, trendy, newProducts }) => {
       <main>
         <Nav />
         <HeaderBanner bannersField={banners} />
-        <Trendy trendyField={trendy} />
-        <Video />
+        <IzdvojeniProdukti trendyField={trendy} />
+        <EmisijeBanner />
         <Partneri />
         <Kategorije />
         <New newField = {newProducts} />
-        <Social />
+        <Vita />
         <Blogs />
+        <CallToAction />
         <Footer />
       </main>
     </>

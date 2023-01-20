@@ -61,14 +61,16 @@ const HeaderBanner = ({ bannersField }) => {
     <div className="w-full h-screen bg-slate-400 flex flex-col justify-center items-center">
       <div ref={bannerRef} className="mt-[8.5rem] w-full h-screen keen-slider">
         {bannersField?.map((banner) => (
-          <div>
-            <img src={urlFor(banner.image[0].asset._ref)} className="keen-slider__slide w-full h-screen object-cover" />
-            <div className="absolute left-1/3 top-1/3 z-[1]">
-              <h5 className="header-h5 z-[1]">{banner.smallText1}</h5>
-              <h1 className="header-h1 z-[1]">{banner.bigText}</h1>
-              <h5 className="header-h5 m-8 z-[1]">{banner.smallText2}</h5>
-              <button type="button" className="px-9 py-3 border-[1px] border-white rounded-full text-white z-[1]">
-                Discover Now
+          <div className="flex flex-col items-center justify-center keen-slider__slide">
+            <img src={urlFor(banner.image.asset._ref)} className="w-full h-screen absolute object-cover" />
+            <div className="flex flex-col gap-4 ml-96 w-[35rem] justify-center">
+              <h5 className="text-primary text-2xl font-[600] z-[1]">{banner.smallText1}</h5>
+              <h1 className="text-6xl font-[600] z-[1]">{banner.bigText}</h1>
+              <h5 className="text-[#454545] font-[400] z-[1]">{banner.smallText2}</h5>
+              <button 
+                type="button"
+                className="z-[1] px-4 py-2 bg-primary w-48 mt-12 text-white">
+                  {banner.buttonText}
               </button>
             </div>
           </div>

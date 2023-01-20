@@ -63,7 +63,7 @@ const Trendy = ({ trendyField }) => {
 
   return (
     <div>
-      <div className="w-full h-screen mt-16">
+      <div className="w-full h-screen mt-20">
         <div className="flex flex-col gap-6 justify-center items-center">
           <h3 className="text-4xl font-[500]">IZDVOJENI PROIZVODI</h3>
           <div className="h-1 w-48 bg-primary" />
@@ -78,7 +78,7 @@ const Trendy = ({ trendyField }) => {
             {trendyField?.map((trendy) => (
               <div className="w-96 h-[100%] flex flex-col justify-center items-center keen-slider__slide">
                 <Link href={`product/${trendy.slug.current}`}>
-                  <div className="w-92 h-96 bg-green-800 border-2 border-gray-200">
+                <div className="w-92 h-96 bg-green-800 border-2 border-gray-200">
                     <img src={urlFor(trendy.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
                   </div>
                 </Link>
