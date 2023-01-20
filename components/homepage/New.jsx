@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 
-import Trendy_1 from '../assets/trendy-1.jpg';
+import Trendy_1 from '../../assets/trendy-1.jpg';
 
-const New = () => {
+const New = ({ newField }) => {
   return (
     <div className="w-full min-h-screen mt-16">
         <div className="flex flex-col justify-center items-center">

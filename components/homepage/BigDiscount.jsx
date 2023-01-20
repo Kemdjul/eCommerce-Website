@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import DiscountImage from '../assets/discount-1.jpg';
+import DiscountImage from '../../assets/discount-1.jpg';
 
 const BigDiscount = () => {
   return (

@@ -1,19 +1,20 @@
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
 import Nav from '../components/Nav';
-import HeaderBanner from '../components/HeaderBanner';
-import Trendy from '../components/Trendy';
-import Video from '../components/Video';
-import New from '../components/New';
-import Social from '../components/Social';
-import Blogs from '../components/Blogs';
-import Footer from '../components/Footer';
+import HeaderBanner from '../components/homepage/HeaderBanner';
+import Trendy from '../components/homepage/Trendy';
+import Video from '../components/homepage/Video';
+import Partneri from '../components/homepage/Partneri';
+import Kategorije from '../components/homepage/Kategorije';
+import New from '../components/homepage/New';
+import Social from '../components/homepage/Social';
+import Blogs from '../components/homepage/Blogs';
+import Footer from '../components/homepage/Footer';
 
-const inter = Inter({ subsets: ['latin'] })
+import { client } from '../lib/client';
 
-export default function Home() {
+const Home = ({ banners, trendy, newProducts }) => {
   return (
     <>
       <Head>
@@ -25,10 +26,12 @@ export default function Home() {
       
       <main>
         <Nav />
-        <HeaderBanner />
-        <Trendy />
+        <HeaderBanner bannersField={banners} />
+        <Trendy trendyField={trendy} />
         <Video />
-        <New />
+        <Partneri />
+        <Kategorije />
+        <New newField = {newProducts} />
         <Social />
         <Blogs />
         <Footer />
@@ -36,3 +39,24 @@ export default function Home() {
     </>
   )
 }
+
+export const getServerSideProps = async () => {
+  const bannerQuery = `*[_type == "banners"]`;
+  const banners = await client.fetch(bannerQuery);
+
+  const trendyQuery = `*[_type == "trendy"]`;
+  const trendy = await client.fetch(trendyQuery);
+
+  const newQuery = `*[_type == "trendy"]`;
+  const newProducts = await client.fetch(newQuery);
+
+  return {
+    props: {
+      banners,
+      trendy,
+      newProducts,
+    },
+  };
+}
+
+export default Home;

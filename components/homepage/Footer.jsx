@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import LogoFooter from '../assets/logo-footer.png';
+import LogoFooter from '../../assets/logo-footer.png';
 
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai';
