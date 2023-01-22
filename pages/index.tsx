@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 
 import Nav from '../components/Nav';
+import KosaricaSidebar from '../components/kosaricaSidebar';
 import HeaderBanner from '../components/homepage/HeaderBanner';
 import IzdvojeniProdukti from '../components/homepage/IzdvojeniProdukti';
 import EmisijeBanner from '../components/homepage/EmisijeBanner';
@@ -28,6 +29,7 @@ const Home = ({ banners, trendy, newProducts }) => {
       
       <main>
         <Nav />
+        <KosaricaSidebar />
         <HeaderBanner bannersField={banners} />
         <IzdvojeniProdukti trendyField={trendy} />
         <EmisijeBanner />
