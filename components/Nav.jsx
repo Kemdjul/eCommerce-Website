@@ -73,7 +73,7 @@ const Nav = () => {
         <div className="flex items-center">
           <AiOutlineSearch className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
           <AiOutlineHeart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
-          <AiOutlineShoppingCart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
+          <Link href="/kosarica"><AiOutlineShoppingCart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" /></Link>
           <div className="w-4 h-4 absolute right-32 top-16 justify-center items-center flex rounded-full bg-primary">
             <p className="text-xs text-white">0</p>
           </div>
