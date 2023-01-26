@@ -8,6 +8,7 @@ export const StateContext = ({ children }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
+    const [sort, setSort] = useState(0);
 
     const onAdd = (product, quantity) => {
         const checkProductInCart = cartItems.find((item) => item._id === product._id);
@@ -55,6 +56,8 @@ export const StateContext = ({ children }) => {
                 incQty,
                 decQty,
                 onAdd,
+                sort,
+                setSort,
             }}
         >
             {children}

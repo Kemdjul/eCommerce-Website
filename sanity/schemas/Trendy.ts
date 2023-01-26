@@ -34,7 +34,8 @@ export default {
       {
         name: 'boja',
         title: 'Boja',
-        type: 'string',
+        type: 'array',
+        of: [{ type: 'string' }],
       },
       {
         name: 'kategorija',

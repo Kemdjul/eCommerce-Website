@@ -7,11 +7,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Jost', 'sans-serif'],
+        'sans': ['Jost', 'sans-serif'],
       },
 
       colors: {
         'primary': '#23A455',
+        'crna': '#000000',
+        'plava': '#131de4',
       },
     },
   },

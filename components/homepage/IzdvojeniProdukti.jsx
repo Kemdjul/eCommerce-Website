@@ -2,15 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { useKeenSlider } from "keen-slider/react";
-
-import BigDiscount from './BigDiscount';
-import SmallDiscount from './SmallDiscount';
-
 import { urlFor } from '../../lib/client';
-
-import Small_1 from '../../assets/small-discount-1.png';
-import Small_2 from '../../assets/small-discount-2.png';
-import Trendy_1 from '../../assets/trendy-1.jpg';
 
 const AdaptiveHeight = (slider) => {
   const updateHeight = () => {
@@ -78,7 +70,7 @@ const Trendy = ({ trendyField }) => {
             {trendyField?.map((trendy) => (
               <div className="w-96 h-[100%] flex flex-col justify-center items-center keen-slider__slide">
                 <Link href={`product/${trendy.slug.current}`}>
-                <div className="w-92 h-96 bg-green-800 border-2 border-gray-200">
+                  <div className="w-92 h-96 bg-green-800 border-2 border-gray-200">
                     <img src={urlFor(trendy.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
                   </div>
                 </Link>

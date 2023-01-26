@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropdown from './Dropdown';
 
 const ListaProdukata = () => {
   return (
@@ -64,6 +65,11 @@ const ListaProdukata = () => {
                     <h3 className="text-5xl font-[600]">Ultra Prost</h3>
                     <p className="text-sm font-[400] leading-7 w-[25.625rem]">Ciljana bio formula za probleme s prostatom. Sastojci doprinose sveobuhvatno kada je u pitanju zdravlje muškarca i prostate.</p>
                     <button type="button" className="py-2 bg-white text-primary w-[6.5rem] text-[13px]">NARUČI SADA</button>
+                </div>
+            
+                <div className="w-full h-12 my-8 flex justify-between items-center px-4 bg-red-400">
+                    <p>9 od 104</p>
+                    <Dropdown label="Sortiraj po:" values={["Cijeni", "A-Z"]} />
                 </div>
             </div>
         </div>

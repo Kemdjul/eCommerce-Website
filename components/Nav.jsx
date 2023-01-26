@@ -16,7 +16,7 @@ const Nav = () => {
 
   return (
     <nav 
-    className="w-full h-screen z-50 flex flex-col fixed">
+    className="w-full z-50 flex flex-col fixed">
       <div className="w-full h-[8.5rem] z-50 flex flex-col bg-white transition-all fixed">
         <div className="w-full h-12 px-32 bg-primary flex items-center justify-between text-white">
           <p>Besplatan trošak dostave iznad 70 eura</p>
