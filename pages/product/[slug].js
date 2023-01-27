@@ -9,6 +9,7 @@ import Footer from '../../components/homepage/Footer';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
 
 import Nav from '../../components/Nav';
+import { useStateContext } from '../../context/StateContext';
 
 const AdaptiveHeight = (slider) => {
   const updateHeight = () => {
@@ -18,7 +19,7 @@ const AdaptiveHeight = (slider) => {
   slider.on("slideChanged", updateHeight);
 }
 
-const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, products }) => {
+const ProductDetails = ({ product, products }) => {
   const [slider, setSlider] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +41,13 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
   [AdaptiveHeight]
   );
 
+  const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
+  const handleClick = () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  }
+
     return (
         <div className="w-full h-screen items-center flex flex-col text-[#262626]">
           <Nav />
@@ -47,15 +55,15 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
           <div className="w-full h-12 flex justify-center items-center gap-10 mt-[8.5rem]">
             <p className="text-primary font-[400]">Početna</p>
             <p className="text-primary font-[400]">Trgovina</p>
-            <p className="text-[#262626] font-[400]">{naziv}</p>
+            <p className="text-[#262626] font-[400]">{product.naziv}</p>
           </div>
             
 
           <div className="flex w-[63.5rem] gap-20 justify-center mt-8">
             <div className="flex flex-col gap-4">
-              <img src={urlFor(image[slider].asset._ref)} className="h-96 w-96 object-contain" />
+              <img src={urlFor(product.image[slider].asset._ref)} className="h-96 w-96 object-contain" />
               <div className="flex justify-center">
-                {image.map((img, index) => { if (index < 4) {
+                {product.image.map((img, index) => { if (index < 4) {
                   return (
                       <img src={urlFor(img.asset._ref)} className="w-20 h-20 mr-4 object-contain" onClick={() => setSlider(index)} />
                   )
@@ -64,10 +72,10 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
             </div>
 
             <div className="flex flex-col w-96 h-80">
-              <h4 className="text-3xl font-[500]">{naziv}</h4>
+              <h4 className="text-3xl font-[500]">{product.naziv}</h4>
 
               <div className="flex items-center mt-4">
-                <p className="text-primary font-[700] text-4xl">€{cijena}</p>
+                <p className="text-primary font-[700] text-4xl">€{product.cijena}</p>
                 <p></p>
                 <p></p>
               </div>
@@ -82,7 +90,7 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
 
                 <div className="flex flex-col gap-1">
                   <p>Na zalihi</p>
-                  <p>{kategorija}</p>
+                  <p>{product.kategorija}</p>
                   <div className="flex gap-2">
                   
                   </div>
@@ -93,7 +101,7 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
                 <div className="flex justify-between items-center mt-10">
                   <p className="text-xl font-[400]">Odabir boje:</p>
                   <div className="flex gap-3">
-                    {boja.map((boja) => (
+                    {product.boja.map((boja) => (
                       <div className={`w-6 h-6 rounded-full bg-${boja}`} />
                     ))}
                   </div>
@@ -106,23 +114,23 @@ const ProductDetails = ({ product: { naziv, boja, cijena, image, kategorija }, p
 
               <div className="w-full flex justify-between mt-28">
                 <div className="flex">
-                  <div className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
+                  <button type="button" onClick={decQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
                     <AiOutlineMinus className="text-primary" />
-                  </div>
+                  </button>
 
                   <div className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8]">
-                    0
+                    {qty}
                   </div>
 
-                  <div className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-r-lg">
+                  <button type="button" onClick={incQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-r-lg">
                     <AiOutlinePlus className="text-primary" />
-                  </div>
+                  </button>
                 </div>
 
-                <div className="px-4 py-2 gap-2 text-primary flex justify-around items-center bg-[#F6F7F8] rounded-lg">
+                <button type="button" onClick={handleClick} className="px-4 py-2 gap-2 text-primary flex justify-around items-center bg-[#F6F7F8] rounded-lg">
                   <AiOutlineShoppingCart />
                   <p>Dodaj u košaricu</p>
-                </div>
+                </button>
 
                 <div className="w-8 h-8 text-primary flex justify-center items-center bg-[#F6F7F8] rounded-lg">
                   <AiOutlineHeart />

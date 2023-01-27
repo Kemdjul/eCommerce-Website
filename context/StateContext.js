@@ -4,16 +4,18 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
     const [showCart, setShowCart] = useState(false);
-    const [cartItems, setCartItems] = useState();
+    const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
     const [sort, setSort] = useState(0);
 
+    let foundProduct;
+
     const onAdd = (product, quantity) => {
         const checkProductInCart = cartItems.find((item) => item._id === product._id);
         
-        setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice + product.cijena * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
         
         if (checkProductInCart) {
@@ -31,6 +33,15 @@ export const StateContext = ({ children }) => {
             setCartItems([...cartItems, { ...product }]);
         }
     }
+
+    const onRemove = (product) => {
+        foundProduct = cartItems.find((item) => item._id === product._id);
+        const newCartItems = cartItems.filter((item) => item._id !== product._id);
+    
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.cijena * foundProduct.quantity);
+        setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
+        setCartItems(newCartItems);
+      }
 
     const incQty = () => {
         setQty((prevQty) => prevQty + 1);
@@ -56,6 +67,7 @@ export const StateContext = ({ children }) => {
                 incQty,
                 decQty,
                 onAdd,
+                onRemove,
                 sort,
                 setSort,
             }}

@@ -63,7 +63,7 @@ const Nav = () => {
               <AiOutlineShoppingCart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer"/>
             </button>
             <div className="w-4 h-4 absolute right-32 top-16 justify-center items-center flex rounded-full bg-primary">
-              <p className="text-xs text-white">0</p>
+              <p className="text-xs text-white">{totalQuantities}</p>
             </div>
           </div>
         </div>
