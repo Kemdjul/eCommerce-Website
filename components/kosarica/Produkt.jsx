@@ -15,7 +15,7 @@ const Produkt = ({ produkt }) => {
       </div>
 
       <div className="flex items-center gap-8">
-        <p className="mr-10">{produkt.cijena}</p>
+        <p className="mr-10">{produkt.cijena.toFixed(2)}</p>
 
         <div className="flex mr-8">
           <button type="button" onClick={() => decQty()} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
@@ -31,7 +31,7 @@ const Produkt = ({ produkt }) => {
           </button>
         </div>
 
-        <p className="mr-8">{produkt.quantity * produkt.cijena}</p>
+        <p className="mr-8">{(produkt.quantity * produkt.cijena).toFixed(2)}</p>
       </div>
     </div>
   )

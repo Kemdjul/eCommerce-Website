@@ -19,7 +19,7 @@ const AdaptiveHeight = (slider) => {
   slider.on("slideChanged", updateHeight);
 }
 
-const ProductDetails = ({ product, products }) => {
+const ProductDetails = ({ produkt, produkti }) => {
   const [slider, setSlider] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -43,7 +43,7 @@ const ProductDetails = ({ product, products }) => {
 
   const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
   const handleClick = () => {
-    onAdd(product, qty);
+    onAdd(produkt, qty);
 
     setShowCart(true);
   }
@@ -55,15 +55,15 @@ const ProductDetails = ({ product, products }) => {
           <div className="w-full h-12 flex justify-center items-center gap-10 mt-[8.5rem]">
             <p className="text-primary font-[400]">Početna</p>
             <p className="text-primary font-[400]">Trgovina</p>
-            <p className="text-[#262626] font-[400]">{product.naziv}</p>
+            <p className="text-[#262626] font-[400]">{produkt.naziv}</p>
           </div>
             
 
           <div className="flex w-[63.5rem] gap-20 justify-center mt-8">
             <div className="flex flex-col gap-4">
-              <img src={urlFor(product.image[slider].asset._ref)} className="h-96 w-96 object-contain" />
+              <img src={urlFor(produkt.image[slider].asset._ref)} className="h-96 w-96 object-contain" />
               <div className="flex justify-center">
-                {product.image.map((img, index) => { if (index < 4) {
+                {produkt.image.map((img, index) => { if (index < 4) {
                   return (
                       <img src={urlFor(img.asset._ref)} className="w-20 h-20 mr-4 object-contain" onClick={() => setSlider(index)} />
                   )
@@ -72,15 +72,15 @@ const ProductDetails = ({ product, products }) => {
             </div>
 
             <div className="flex flex-col w-96 h-80">
-              <h4 className="text-3xl font-[500]">{product.naziv}</h4>
+              <h4 className="text-3xl font-[500]">{produkt.naziv}</h4>
 
               <div className="flex items-center mt-4">
-                <p className="text-primary font-[700] text-4xl">€{product.cijena}</p>
+                <p className="text-primary font-[700] text-4xl">€{produkt.cijena.toFixed(2)}</p>
                 <p></p>
                 <p></p>
               </div>
 
-              <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: 10€</p>
+              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena.toFixed(2)}</p>}
 
               <div className="flex w-full justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">
@@ -90,27 +90,27 @@ const ProductDetails = ({ product, products }) => {
 
                 <div className="flex flex-col gap-1">
                   <p>Na zalihi</p>
-                  <p>{product.kategorija}</p>
+                  <p>{produkt.kategorija[0]}</p>
                   <div className="flex gap-2">
                   
                   </div>
                 </div>
               </div>
 
-              <div className="w-full">
+              {produkt.boja && (<div className="w-full">
                 <div className="flex justify-between items-center mt-10">
                   <p className="text-xl font-[400]">Odabir boje:</p>
                   <div className="flex gap-3">
-                    {product.boja.map((boja) => (
+                    {produkt.boja.map((boja) => (
                       <div className={`w-6 h-6 rounded-full bg-${boja}`} />
                     ))}
                   </div>
                 </div>
-              </div>
+              </div>)}
 
-              <div className="w-full justify-between flex mt-6">
+              {produkt.velicina && (<div className="w-full justify-between flex mt-6">
                 <p>Veličina</p>
-              </div>
+              </div>)}
 
               <div className="w-full flex justify-between mt-28">
                 <div className="flex">
@@ -156,7 +156,7 @@ const ProductDetails = ({ product, products }) => {
             <h3 className="text-4xl">POVEZANI PROIZVODI</h3>
 
             <div ref={sliderRef} className="flex w-[80rem] keen-slider">
-            {products?.map((produkt) => (
+            {produkti?.map((produkt) => (
               <div className="w-64 flex flex-col justify-center items-center keen-slider__slide">
                 <Link href={`${produkt.slug.current}`}>
                   <div className="w- h- bg-green-800 border-2 border-gray-200">
@@ -185,17 +185,17 @@ const ProductDetails = ({ product, products }) => {
   )
 }
 
-export const getServerSideProps = async ({ params: { slug, kategorija } }) => {
-  const trendyQuery = `*[_type == "trendy" && slug.current == '${slug}'][0]`;
-  const product = await client.fetch(trendyQuery);
+export const getServerSideProps = async ({ params: { slug } }) => {
+  const produktQuery = `*[_type == "produkt" && slug.current == '${slug}'][0]`;
+  const produkt = await client.fetch(produktQuery);
   
-  const productsQuery = `*[_type == "trendy" && kategorija == '${product.kategorija}']`;
-  const products = await client.fetch(productsQuery);
+  const produktiQuery = `*[_type == "produkt" && kategorija[0] == '${produkt.kategorija[0]}' && _id != '${produkt._id}']`;
+  const produkti = await client.fetch(produktiQuery);
 
   return {
     props: {
-      product,
-      products,
+      produkt,
+      produkti,
     },
   };
 }

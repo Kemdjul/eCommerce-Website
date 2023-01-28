@@ -78,7 +78,7 @@ const Trendy = ({ produkti }) => {
                 </Link>
                   <div className="py-3 flex flex-col items-center">
                     <Link href={`produkt/${produkt.slug.current}`}>
-                      <p className="text-xl font-[500] tracking-widest">{produkt.naziv}</p>
+                      <p className="text-xl font-[500] tracking-widest">{produkt.naziv.toUpperCase()}</p>
                     </Link>
                     <div className="flex items-center gap-4">
                       <p className="text-primary">€{produkt.cijena.toFixed(2)}</p>

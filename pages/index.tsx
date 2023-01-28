@@ -33,7 +33,7 @@ const Home = ({ banneri, produkti, newProducts }) => {
         <EmisijeBanner />
         <Partneri />
         <Kategorije />
-        <New newField = {newProducts} />
+        <New produkti = {produkti} />
         <Vita />
         <Blogs />
         <CallToAction />
@@ -50,14 +50,10 @@ export const getServerSideProps = async () => {
   const produktiQuery = `*[_type == "produkt"]`;
   const produkti = await client.fetch(produktiQuery);
 
-  const newQuery = `*[_type == "trendy"]`;
-  const newProducts = await client.fetch(newQuery);
-
   return {
     props: {
       banneri,
       produkti,
-      newProducts,
     },
   };
 }
