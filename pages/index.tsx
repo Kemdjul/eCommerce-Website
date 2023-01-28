@@ -16,7 +16,7 @@ import Footer from '../components/homepage/Footer';
 
 import { client } from '../lib/client';
 
-const Home = ({ banners, trendy, newProducts }) => {
+const Home = ({ banneri, produkti, newProducts }) => {
   return (
     <>
       <Head>
@@ -28,8 +28,8 @@ const Home = ({ banners, trendy, newProducts }) => {
       
       <main>
         <Nav />
-        <HeaderBanner bannersField={banners} />
-        <IzdvojeniProdukti trendyField={trendy} />
+        <HeaderBanner banneri={banneri} />
+        <IzdvojeniProdukti produkti={produkti} />
         <EmisijeBanner />
         <Partneri />
         <Kategorije />
@@ -45,18 +45,18 @@ const Home = ({ banners, trendy, newProducts }) => {
 
 export const getServerSideProps = async () => {
   const bannerQuery = `*[_type == "banners"]`;
-  const banners = await client.fetch(bannerQuery);
+  const banneri = await client.fetch(bannerQuery);
 
-  const trendyQuery = `*[_type == "trendy"]`;
-  const trendy = await client.fetch(trendyQuery);
+  const produktiQuery = `*[_type == "produkt"]`;
+  const produkti = await client.fetch(produktiQuery);
 
   const newQuery = `*[_type == "trendy"]`;
   const newProducts = await client.fetch(newQuery);
 
   return {
     props: {
-      banners,
-      trendy,
+      banneri,
+      produkti,
       newProducts,
     },
   };

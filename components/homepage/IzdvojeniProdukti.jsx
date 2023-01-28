@@ -32,7 +32,7 @@ function Arrow(props) {
   )
 }
 
-const Trendy = ({ trendyField }) => {
+const Trendy = ({ produkti }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider(
@@ -67,22 +67,22 @@ const Trendy = ({ trendyField }) => {
             
           <div ref={sliderRef} className="flex w-full keen-slider">
 
-            {trendyField?.map((trendy) => (
+            {produkti?.map((produkt) => {
+              if(produkt.izdvojiti) return(
+
               <div className="w-96 h-[100%] flex flex-col justify-center items-center keen-slider__slide">
-                <Link href={`product/${trendy.slug.current}`}>
+                <Link href={`produkt/${produkt.slug.current}`}>
                   <div className="w-92 h-96 bg-green-800 border-2 border-gray-200">
-                    <img src={urlFor(trendy.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
+                    <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
                   </div>
                 </Link>
                   <div className="py-3 flex flex-col items-center">
-                    <Link href={`product/${trendy.slug.current}`}>
-                      <p className="text-xl font-[500] tracking-widest">{trendy.naziv}</p>
+                    <Link href={`produkt/${produkt.slug.current}`}>
+                      <p className="text-xl font-[500] tracking-widest">{produkt.naziv}</p>
                     </Link>
-                    <div className="flex gap-4">
-                      <p className="text-primary">€{trendy.cijena}</p>
-                      {trendy.staraCijena?.map(() => (
-                        <p>{trendy.staraCijena}</p>
-                      ))}
+                    <div className="flex items-center gap-4">
+                      <p className="text-primary">€{produkt.cijena.toFixed(2)}</p>
+                      {produkt.staraCijena && <p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}</p>}
                     </div>
 
                     <button 
@@ -90,7 +90,7 @@ const Trendy = ({ trendyField }) => {
                       type="button">DODAJ U KOŠARICU</button>
                   </div>
               </div>
-            ))}
+            )})}
         </div>
 
         </div>

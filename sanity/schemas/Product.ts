@@ -1,6 +1,8 @@
+import { BlockEditor } from "sanity";
+
 export default {
-    name: 'product',
-    title: 'Product',
+    name: 'produkt',
+    title: 'Produkt',
     type: 'document',
     fields: [
       {
@@ -31,10 +33,43 @@ export default {
         title: 'Cijena',
         type: 'number',
       },
+      {
+        name: 'staraCijena',
+        title: 'Stara cijena',
+        type: 'number',
+      },
+      {
+        name: 'kategorija',
+        title: 'Kategorija',
+        type: 'array',
+        of: [
+          {
+            type: 'string',
+          },
+        ]
+      },
       { 
         name: 'opis',
         title: 'Opis',
-        type: 'string',
+        type: 'array',
+        of: [
+          {
+            type: 'block',
+          },
+          {
+            type: 'image',
+            fields: [
+              {
+                type: 'text',
+                name: 'alt',
+                title: 'Alternative text',
+                options: {
+                  isHighlighted: true
+                }
+              },
+            ],
+          },
+        ],
       },
       {
         name: 'boja',
@@ -55,7 +90,7 @@ export default {
         },
       },
       {
-        name: 'izdvojen',
+        name: 'izdvojiti',
         title: 'Izdvojiti',
         type: 'boolean',
       },

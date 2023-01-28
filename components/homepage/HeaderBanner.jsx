@@ -40,7 +40,7 @@ function Arrow(props) {
   )
 }
 
-const HeaderBanner = ({ bannersField }) => {
+const HeaderBanner = ({ banneri }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [loaded, setLoaded] = React.useState(false);
   const [bannerRef, instanceRef] = useKeenSlider(
@@ -60,7 +60,7 @@ const HeaderBanner = ({ bannersField }) => {
   return (
     <div className="w-full h-screen bg-slate-400 flex flex-col justify-center items-center">
       <div ref={bannerRef} className="mt-[8.5rem] w-full h-screen keen-slider">
-        {bannersField?.map((banner) => (
+        {banneri?.map((banner) => (
           <div className="flex flex-col items-center justify-center keen-slider__slide">
             <img src={urlFor(banner.image.asset._ref)} className="w-full h-screen absolute object-cover" />
             <div className="flex flex-col gap-4 ml-96 w-[35rem] justify-center">
@@ -77,7 +77,7 @@ const HeaderBanner = ({ bannersField }) => {
         ))}
       </div>
 
-      {loaded && instanceRef.current && (() => bannersField.length > 1) (
+      {loaded && instanceRef.current && (() => banneri.length > 1) (
           <>
             <Arrow
               left
