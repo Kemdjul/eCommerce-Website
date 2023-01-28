@@ -42,7 +42,7 @@ const kosarica = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 font-[400] text-right">
-                  <p>{totalPrice}</p>
+                  <p>€{totalPrice.toFixed(2)}</p>
                   <p>4€</p>
                   <p>No</p>
                 </div>
