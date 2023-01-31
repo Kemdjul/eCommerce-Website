@@ -35,7 +35,7 @@ const Nav = () => {
               className="h-8 w-32 object-cover"
             />
 
-          <ul className="flex gap-12 items-center text-[18px] opacity-70 text-[18px]">
+          <ul className="flex gap-12 items-center text-[18px] opacity-70">
             <p className={router.pathname === '/' 
               ? "border-b-2 border-primary text-primary" 
               : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/">POČETNA</Link></p>

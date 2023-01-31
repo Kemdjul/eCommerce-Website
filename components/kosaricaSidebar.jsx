@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { urlFor } from '../lib/client';
 import { useStateContext } from '../context/StateContext';
 import Link from 'next/link';
@@ -9,8 +9,6 @@ const kosaricaSidebar = () => {
   const cartRef = useRef();
   const { totalPrice, cartItems, setShowCart, onRemove } = useStateContext();
 
-  
-
   return (
     <div className="w-full h-screen flex z-[100] sticky" ref={cartRef}>
         <div className="w-full h-full bg-[#D9D9D9] opacity-50" onClick={() => setShowCart(false)}>
@@ -19,7 +17,7 @@ const kosaricaSidebar = () => {
         <div className="w-[32.25rem] h-full flex flex-col gap-4 text-[#22262A] items-center bg-white px-4 py-8">
             <h5 className="text-3xl">MOJA KOŠARICA</h5>
 
-            {cartItems.length >= 1 && cartItems.map((item, index) => (
+            {cartItems.length >= 1 && cartItems.map((item) => (
               <div className="flex flex-col gap-2" key={item._id}>
                 <div className="w-full flex justify-between items-center gap-8">
                   <AiOutlineClose className="absolute right-4 top-4 text-2xl text-primary cursor-pointer" onClick={() => setShowCart(false)} />
@@ -30,7 +28,7 @@ const kosaricaSidebar = () => {
       
                     <div className="flex gap-4 font-[400]">
                       <p>{item.quantity}x</p>
-                      <p>€{item.cijena.toFixed(2)}</p>
+                      <p>{item.cijena.toFixed(2)}€</p>
                     </div>
                   </div>
       
@@ -42,7 +40,7 @@ const kosaricaSidebar = () => {
             ))}
             <div className="w-full flex px-6 justify-between items-center">
                 <p className="text-2xl">Ukupno:</p>
-                <p className="font-[400] text-2xl">€{totalPrice.toFixed(2)}</p>
+                <p className="font-[400] text-2xl">{totalPrice.toFixed(2)}€</p>
             </div>
             <Link href="/kosarica">
               <div className="mt-8 flex items-center justify-center bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Vidi košaricu</div>

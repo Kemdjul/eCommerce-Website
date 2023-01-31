@@ -81,8 +81,8 @@ const Trendy = ({ produkti }) => {
                       <p className="text-xl font-[500] tracking-widest">{produkt.naziv.toUpperCase()}</p>
                     </Link>
                     <div className="flex items-center gap-4">
-                      <p className="text-primary">€{produkt.cijena.toFixed(2)}</p>
-                      {produkt.staraCijena && <p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}</p>}
+                      <p className="text-primary">{produkt.cijena.toFixed(2)}€</p>
+                      {produkt.staraCijena && <p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}€</p>}
                     </div>
 
                     <button 

@@ -9,15 +9,23 @@ export const StateContext = ({ children }) => {
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
     const [sort, setSort] = useState(0);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (window !== "undefined") {
+            localStorage.getItem('cart') ? [setCartItems(JSON.parse(localStorage.getItem('cart')))] : '';
+            setLoaded('true');
+        }
+    }, []);
 
     let foundProduct;
 
     const onAdd = (product, quantity) => {
+        localStorage.removeItem('cart');
         const checkProductInCart = cartItems.find((item) => item._id === product._id);
-        
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.cijena * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
-        
+
         if (checkProductInCart) {
             const updatedCartItems = cartItems.map((cartProduct) => {
                 if(cartProduct._id === product._id) return {
@@ -25,21 +33,28 @@ export const StateContext = ({ children }) => {
                     quantity: cartProduct.quantity + quantity
                 }
             })
-
+            localStorage.setItem('cart', JSON.stringify(updatedCartItems));
             setCartItems(updatedCartItems);
         } else {
             product.quantity = quantity;
-
+            const newCart = [...cartItems, { ...product }];
+            localStorage.setItem('cart', JSON.stringify(newCart));
             setCartItems([...cartItems, { ...product }]);
         }
     }
 
     const onRemove = (product) => {
+        localStorage.removeItem('cart');
         foundProduct = cartItems.find((item) => item._id === product._id);
         const newCartItems = cartItems.filter((item) => item._id !== product._id);
     
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.cijena * foundProduct.quantity);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
+
+        if (newCartItems != '') {
+            localStorage.setItem('cart', JSON.stringify(newCartItems));
+        }
+
         setCartItems(newCartItems);
       }
 

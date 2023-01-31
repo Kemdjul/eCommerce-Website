@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { client, urlFor } from '../../lib/client';
 import { useKeenSlider } from "keen-slider/react";
+import { PortableText } from '@portabletext/react';
+import { urlBuilder } from '../../lib/client';
+import { getImageDimensions } from '@sanity/asset-utils';
 
 import CallToAction from '../../components/homepage/CallToAction';
 import Footer from '../../components/homepage/Footer';
@@ -10,6 +13,28 @@ import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart } 
 
 import Nav from '../../components/Nav';
 import { useStateContext } from '../../context/StateContext';
+
+const SampleImageComponent = ({value}) => {
+  const {width, height} = getImageDimensions(value)
+  return (
+    <img
+      src={urlFor(value.asset?._ref)}
+      alt={value.alt || ' '}
+      loading="lazy"
+      className="max-w-lg max-h-lg object-contain"
+    />
+  )
+}
+
+const components = {
+  types: {
+    image: SampleImageComponent,
+  },
+  list: {
+    bullet: ({children}) => <ul className="list-disc mt-4">{children}</ul>,
+    number: ({children}) => <ol className="list-disc mt-4">{children}</ol>,
+  },
+}
 
 const AdaptiveHeight = (slider) => {
   const updateHeight = () => {
@@ -75,12 +100,12 @@ const ProductDetails = ({ produkt, produkti }) => {
               <h4 className="text-3xl font-[500]">{produkt.naziv}</h4>
 
               <div className="flex items-center mt-4">
-                <p className="text-primary font-[700] text-4xl">€{produkt.cijena.toFixed(2)}</p>
+                <p className="text-primary font-[700] text-4xl">{produkt.cijena.toFixed(2)}€</p>
                 <p></p>
                 <p></p>
               </div>
 
-              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena.toFixed(2)}</p>}
+              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena.toFixed(2)}€</p>}
 
               <div className="flex w-full justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">
@@ -139,7 +164,7 @@ const ProductDetails = ({ produkt, produkti }) => {
             </div>
           </div>
 
-          <div className="w-[60rem] mt-16 min-h-screen bg-[#FAFAFB] rounded-lg">
+          <div className="w-[60rem] mt-16 pb-8 bg-[#FAFAFB] rounded-lg">
             <div className="flex gap-12 px-10 py-8">
               <div className="absolute px-[27.5rem] pt-10 pb-7 border-b-[6px] border-[#E5E8EA]"/>
               <button type="button" className="text-primary font-[400] text-xl border-b-[6px] pb-10 border-primary z-10">Informacije o proizvodu</button>
@@ -148,7 +173,7 @@ const ProductDetails = ({ produkt, produkti }) => {
             </div>
 
             <div className="w-full px-10">
-              Test
+              <PortableText value={produkt.opis} components={components} />
             </div>
           </div>
 
@@ -156,11 +181,11 @@ const ProductDetails = ({ produkt, produkti }) => {
             <h3 className="text-4xl">POVEZANI PROIZVODI</h3>
 
             <div ref={sliderRef} className="flex w-[80rem] keen-slider">
-            {produkti?.map((produkt) => (
+            {produkti?.map((slicniProdukt) => (
               <div className="w-64 flex flex-col justify-center items-center keen-slider__slide">
-                <Link href={`${produkt.slug.current}`}>
-                  <div className="w- h- bg-green-800 border-2 border-gray-200">
-                    <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-72 h-72 object-contain" />
+                <Link href={`${slicniProdukt.slug.current}`}>
+                  <div className="bg-green-800 border-2 border-gray-200">
+                    <img src={urlFor(slicniProdukt.image[0].asset._ref)} alt="Product image" className="w-72 h-72 object-contain" />
                   </div>
                 </Link>
 

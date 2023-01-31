@@ -16,7 +16,7 @@ import Footer from '../components/homepage/Footer';
 
 import { client } from '../lib/client';
 
-const Home = ({ banneri, produkti, newProducts }) => {
+const Home = ({ banneri, produkti }) => {
   return (
     <>
       <Head>

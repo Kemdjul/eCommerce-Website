@@ -1,16 +1,8 @@
 import React, {useState, useEffect } from 'react';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from "keen-slider/react";
-import Image from 'next/image';
-
-import { client } from '../../lib/client';
 import { urlFor } from '../../lib/client';
-
-import Banner1 from '../../assets/banner-1.jpg';
-import Banner2 from '../../assets/banner-2.jpg';
-import handler from '../../pages/api/hello';
-
-
+import { useStateContext } from '../../context/StateContext';
 
 const AdaptiveHeight = (slider) => {
   const updateHeight = () => {
@@ -56,6 +48,8 @@ const HeaderBanner = ({ banneri }) => {
     },
     [AdaptiveHeight]
   );
+
+  const { cartItems } = useStateContext();
 
   return (
     <div className="w-full h-screen bg-slate-400 flex flex-col justify-center items-center">
