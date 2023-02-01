@@ -1,24 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStateContext } from '../context/StateContext';
 
 import { BsCreditCard2Back } from 'react-icons/bs';
 import { AiFillCheckCircle, AiOutlineCheck } from 'react-icons/ai';
 import { CiBank } from 'react-icons/ci';
 import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
+import { client } from '../lib/client';
+
 const Placanje = () => {
     const [postupak, setPostupak] = useState(1);
     const [opcijaPlacanja, setOpcijaPlacanja] = useState(0);
+    const [imePrezime, setImePrezime] = useState('');
+    const [email, setEmail] = useState('');
+    const [brojTel, setBrojTel] = useState('');
+    const [adresa, setAdresa] = useState('');
+    const [napomena, setNapomena] = useState('');
+    const { cartItems, setShowPlacanje } = useStateContext();
 
-    const handleFirst = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setImePrezime(event.target.fime.value + ' ' + event.target.fprezime.value);
+        setEmail(event.target.femail.value);
+        setBrojTel(event.target.fbroj.value);
+        setAdresa(event.target.fadresa.value + ' ' + event.target.fgrad.value + ' ' + event.target.fpostbroj.value);
+        setNapomena(event.target.fnapomena.value);
         setPostupak(2);
-    };
+    }
+
+    const transformCartItems = () => {
+        const array = [];
+
+        cartItems.map((i, index) => {
+            array.push({
+                proizvod: {
+                    _ref: cartItems[index]._id,
+                },
+                kolicina: cartItems[index].quantity,
+            })
+        });
+        
+        return array;
+    }
+
+    const cartItemsTransformed = transformCartItems();
+
+    let item = [{
+        _id: '1',
+        _type: 'narudzbe',
+        imePrezime: imePrezime,
+        proizvodi: cartItemsTransformed,
+        email: email,
+        brojTel: brojTel,
+        adresa: adresa,
+        napomena: napomena,
+      }];
 
     const handleSecond = () => {
+        client.create(item[0]);
         setPostupak(3);
     };
 
     const handleThird = () => {
-        setPostupak(0);
+        setShowPlacanje(false);
+        setPostupak(1);
     };
 
   return (
@@ -40,7 +85,7 @@ const Placanje = () => {
                 </div>
             </div>
             <div className="flex mt-2">
-                <form className="flex flex-col gap-4 items-center">
+                <form className="flex flex-col gap-4 items-center" onSubmit={(event) => handleSubmit(event)}>
                     <div className="flex gap-[10%]">
                         <div className="flex flex-col w-[45%] gap-6">
                             <input type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
@@ -50,7 +95,7 @@ const Placanje = () => {
 
                         <div className="flex flex-col w-[45%] gap-6">
                             <input type="text" id="fprezime" name="fprezime" placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input type="email" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input type="text" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <div className="flex justify-between">
                                 <input type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
                                 <input type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
@@ -68,7 +113,7 @@ const Placanje = () => {
                         <label for="fnewsletter"> Pretplati me na naš newsletter.</label>
                     </div>
 
-                    <input onClick={() => handleFirst()} type="submit" value="Opcije plaćanja" className="px-12 py-2 text-lg text-white bg-primary rounded-lg" />
+                    <input type="submit" value="Opcije plaćanja" className="px-12 py-2 text-lg text-white bg-primary rounded-lg" />
                 </form>
             </div>
         </div>)}

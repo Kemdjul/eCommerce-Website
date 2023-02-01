@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../components/Nav';
 import Banner from '../components/Banner';
 import Produkt from '../components/kosarica/Produkt.jsx';
@@ -7,27 +7,19 @@ import Placanje from '../components/Placanje';
 import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 
-import { client } from '../lib/client';
-
 const kosarica = () => {
-  const { cartItems, qty, incQty, decQty, totalPrice } = useStateContext();
+  const { cartItems, totalQuantities, qty, incQty, decQty, totalPrice, showPlacanje, setShowPlacanje } = useStateContext();
 
-  let transaction = client.transaction();
-
-  let item = [{
-    _id: '1',
-    _type: 'narudzbe',
-    proizvodi: 'Test narudzba',
-  }];
-
-  useEffect(() => {
-    client.create(item[0]);
-  }, []);
+  const handleClick = () => {
+    if (totalQuantities != 0) {
+      setShowPlacanje(true);
+    }
+  }
 
   return (
     <div className="flex flex-col gap-8 text-[#22262A]">
         <Nav />
-        <Placanje />
+        {showPlacanje && <Placanje />}
         <Banner text="TRGOVINA" smallText="POČETNA / TRGOVINA" />
         <div className="h-12 mx-72 px-8 border-b-2 border-[#F6F7F8] flex items-center justify-between ">
           <h5 className="text-[#22262A] text-xl">PROIZVODI</h5>
@@ -59,17 +51,17 @@ const kosarica = () => {
 
                 <div className="flex flex-col gap-2 font-[400] text-right">
                   <p>{totalPrice.toFixed(2)}€</p>
-                  <p>4.00€</p>
+                  <p>{totalPrice > 70 ? '0€' : '4€'}</p>
                   <p>Ne</p>
                 </div>
               </div>
 
               <div className="flex justify-between px-2 font-[600] text-lg">
                 <p>UKUPNO</p>
-                <p className="text-right">{(totalPrice + 4).toFixed(2)}€</p>
+                <p className="text-right">{(totalPrice > 70 ? totalPrice : totalPrice + 4).toFixed(2)}€</p>
               </div>
 
-              <button type="button" className="bg-primary rounded-lg h-12 flex justify-center items-center text-white">
+              <button onClick={() => {handleClick()}} type="button" className="bg-primary rounded-lg h-12 flex justify-center items-center text-white">
                 <p>Plaćanje</p>
               </button>
             </div>

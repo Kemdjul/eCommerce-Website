@@ -14,10 +14,41 @@ export default {
         type: 'array',
         of: [
           {
-            type: 'reference',
-            to: [{type: 'produkt'}]
-          }
-        ]
+            type: 'object',
+            name: 'lista',
+            fields: [
+              {
+                name: 'proizvod',
+                type: 'reference',
+                to: [{type: 'produkt'}],
+              },
+              {
+                type: 'number',
+                name: 'kolicina',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'email',
+        title: 'Email',
+        type: 'string',
+      },
+      {
+        name: 'brojTel',
+        title: 'Broj Telefona',
+        type: 'string',
+      },
+      {
+        name: 'adresa',
+        title: 'Adresa',
+        type: 'string',
+      },
+      {
+        name: 'napomena',
+        title: 'Napomena',
+        type: 'string',
       },
     ],
   };

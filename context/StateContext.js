@@ -9,7 +9,7 @@ export const StateContext = ({ children }) => {
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
     const [sort, setSort] = useState(0);
-    const [loaded, setLoaded] = useState(false);
+    const [showPlacanje, setShowPlacanje] = useState(false);
 
     let foundProduct;
 
@@ -79,6 +79,8 @@ export const StateContext = ({ children }) => {
                 onRemove,
                 sort,
                 setSort,
+                showPlacanje,
+                setShowPlacanje,
             }}
         >
             {children}
