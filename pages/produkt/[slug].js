@@ -105,7 +105,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                 <p></p>
               </div>
 
-              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena.toFixed(2)}€</p>}
+              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijena.toFixed(2)}€</p>}
 
               <div className="flex w-full justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">
@@ -182,7 +182,7 @@ const ProductDetails = ({ produkt, produkti }) => {
 
             <div ref={sliderRef} className="flex w-[80rem] keen-slider">
             {produkti?.map((slicniProdukt) => (
-              <div className="w-64 flex flex-col justify-center items-center keen-slider__slide">
+              <div className="w-64 flex flex-col pt-8 items-center keen-slider__slide">
                 <Link href={`${slicniProdukt.slug.current}`}>
                   <div className="bg-green-800 border-2 border-gray-200">
                     <img src={urlFor(slicniProdukt.image[0].asset._ref)} alt="Product image" className="w-72 h-72 object-contain" />
@@ -191,7 +191,7 @@ const ProductDetails = ({ produkt, produkti }) => {
 
                 <div className="py-3 flex flex-col items-center">
                   <Link href={`${produkt.slug.current}`}>
-                    <p className="text-3xl font-[700]">{produkt.naziv}</p>
+                    <p className="text-3xl text-center">{slicniProdukt.naziv}</p>
                   </Link>
                   </div>
               </div>

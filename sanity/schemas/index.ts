@@ -1,6 +1,5 @@
 import Product from './Product';
 import Banner from './Banner';
-import Trendy from './Trendy';
-import New from './New';
+import Narudzbe from './Narudzbe';
 
-export const schemaTypes = [Product, Banner, Trendy, New];
+export const schemaTypes = [Product, Banner, Narudzbe];

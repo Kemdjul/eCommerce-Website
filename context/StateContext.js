@@ -11,13 +11,6 @@ export const StateContext = ({ children }) => {
     const [sort, setSort] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-        if (window !== "undefined") {
-            localStorage.getItem('cart') ? [setCartItems(JSON.parse(localStorage.getItem('cart')))] : '';
-            setLoaded('true');
-        }
-    }, []);
-
     let foundProduct;
 
     const onAdd = (product, quantity) => {
