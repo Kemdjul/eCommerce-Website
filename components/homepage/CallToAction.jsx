@@ -1,10 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 
+import Logo from '../../assets/logo.png';
+
 const CallToAction = () => {
   return (
     <div className="w-full h-[22rem] flex justify-between items-center px-32">
-        <Image />
+        <Image src={Logo} className="w-44" />
 
         <div className="h-full flex flex-col justify-center items-center text-center gap-4">
             <h5 className="text-2xl">NEWSLETTER</h5>

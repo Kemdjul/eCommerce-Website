@@ -3,6 +3,8 @@ import { urlFor } from '../lib/client';
 import { useStateContext } from '../context/StateContext';
 import Link from 'next/link';
 
+import { motion } from 'framer-motion';
+
 import { AiOutlineClose, AiOutlineCloseCircle } from 'react-icons/ai';
 
 const kosaricaSidebar = () => {
@@ -11,10 +13,10 @@ const kosaricaSidebar = () => {
 
   return (
     <div className="w-full h-screen flex z-[100] sticky" ref={cartRef}>
-        <div className="w-full h-full bg-[#D9D9D9] opacity-50" onClick={() => setShowCart(false)}>
+        <div className="w-full absolute h-full bg-[#D9D9D9] opacity-50" onClick={() => setShowCart(false)}>
         </div>
 
-        <div className="w-[32.25rem] h-full flex flex-col gap-4 text-[#22262A] items-center bg-white px-4 py-8">
+        <motion.div initial={{ x: 516 }} animate={{ x: 0 }} className="w-[32.25rem] h-full flex flex-col absolute right-0 gap-4 text-[#22262A] items-center bg-white px-4 py-8">
             <h5 className="text-3xl">MOJA KOŠARICA</h5>
 
             {cartItems.length >= 1 && cartItems.map((item) => (
@@ -46,7 +48,7 @@ const kosaricaSidebar = () => {
               <div className="mt-8 flex items-center justify-center bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Vidi košaricu</div>
             </Link>
             <button type="button" className="px-4 py-2 mt-8 bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Plaćanje</button>
-        </div>
+        </motion.div>
     </div>
   )
 }

@@ -10,7 +10,7 @@ const Vita = () => {
         <div className="flex flex-col  w-[52rem] items-center justify-center text-center z-10">
             <h3 className="text-[4rem] font-[600] drop-shadow-lg">VITA+ KARTICA</h3>
             <p className="text-2xl font-[400] leading-9">Preuzmite svoju VITA+ karticu vjernosti i ostvarite 5% popusta na slijedeću narudžbu te razne pogodnosti na proizvode i usluge kod nas i naših partnera</p>
-            <button type="button" className="px-4 py-2 mt-10 bg-primary">ISPUNI PRISTUPNICU</button>
+            <a href='/pdf/VITA_PLUS.pdf' target='_blank' className="px-4 py-2 mt-10 bg-primary">ISPUNI PRISTUPNICU</a>
         </div>
     </div>
   )

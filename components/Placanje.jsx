@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useStateContext } from '../context/StateContext';
 
+import Napustanje from './kosarica/Napustanje';
+
 import { BsCreditCard2Back } from 'react-icons/bs';
-import { AiFillCheckCircle, AiOutlineCheck } from 'react-icons/ai';
+import { AiFillCheckCircle, AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { CiBank } from 'react-icons/ci';
 import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
 import { client } from '../lib/client';
 
 const Placanje = () => {
-    const [postupak, setPostupak] = useState(1);
     const [opcijaPlacanja, setOpcijaPlacanja] = useState(0);
     const [imePrezime, setImePrezime] = useState('');
     const [email, setEmail] = useState('');
     const [brojTel, setBrojTel] = useState('');
     const [adresa, setAdresa] = useState('');
     const [napomena, setNapomena] = useState('');
-    const { cartItems, setShowPlacanje } = useStateContext();
+    const { postupak, setPostupak, cartItems, setShowPlacanje, showNapustanje, setShowNapustanje } = useStateContext();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -69,7 +70,11 @@ const Placanje = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center z-[101] fixed">
         <div className="absolute w-full h-screen bg-gray-600 opacity-40" />
-        {postupak == 1 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-3 justify-center items-center bg-white z-[102]">
+        <AiOutlineClose className="relative translate-x-[16rem] translate-y-16 text-2xl z-[103] text-primary opacity-60" onClick={() => {
+            setShowNapustanje(true);
+        }} />
+        {showNapustanje && <Napustanje />}
+        {postupak == 1 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-3 justify-center items-center bg-white z-[102] rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">
@@ -88,24 +93,24 @@ const Placanje = () => {
                 <form className="flex flex-col gap-4 items-center" onSubmit={(event) => handleSubmit(event)}>
                     <div className="flex gap-[10%]">
                         <div className="flex flex-col w-[45%] gap-6">
-                            <input type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input type="email" id="fime" name="femail" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input type="text" id="fime" name="fadresa" placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="email" id="fime" name="femail" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="fime" name="fadresa" placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                         </div>
 
                         <div className="flex flex-col w-[45%] gap-6">
-                            <input type="text" id="fprezime" name="fprezime" placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input type="text" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="fprezime" name="fprezime" placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <div className="flex justify-between">
-                                <input type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
-                                <input type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
+                                <input required={true} type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
+                                <input required={true} type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
                             </div>
                         </div>
                     </div>
 
                     <input type="text" id="fnapomena" name="fnapomena" placeholder="Napomena" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm text-center w-[60%] mt-2" />
                     <div>
-                        <input type="checkbox" id="fuvjeti" name="fuvjeti" value="Uvjeti" />
+                        <input required={true} type="checkbox" id="fuvjeti" name="fuvjeti" value="Uvjeti" />
                         <label for="fuvjeti"> Pročitao/la sam i slažem se s uvjetima korištenja i odredbama web-stranice. </label>
                     </div>
                     <div>
@@ -118,7 +123,7 @@ const Placanje = () => {
             </div>
         </div>)}
 
-        {postupak == 2 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102]">
+        {postupak == 2 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102] rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">
@@ -164,7 +169,7 @@ const Placanje = () => {
             <button onClick={() => handleSecond()} type="button" className="px-12 py-2 text-lg text-white bg-primary rounded-lg">Plati</button>
         </div>)}
 
-        {postupak == 3 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102]">
+        {postupak == 3 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102] rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">

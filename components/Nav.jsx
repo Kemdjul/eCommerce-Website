@@ -34,7 +34,7 @@ const Nav = () => {
             <Image 
               src={Logo} 
               alt="logo" 
-              className="h-8 w-32 object-cover"
+              className="h-16 w-32 object-contain"
             />
 
           <ul className="flex gap-12 items-center text-[18px] opacity-70">

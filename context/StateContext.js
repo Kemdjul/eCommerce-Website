@@ -11,6 +11,8 @@ export const StateContext = ({ children }) => {
     const [sort, setSort] = useState(0);
     const [showPlacanje, setShowPlacanje] = useState(false);
     const [trazi, setTrazi] = useState(false);
+    const [showNapustanje, setShowNapustanje] = useState(false);
+    const [postupak, setPostupak] = useState(1);
 
     let foundProduct;
 
@@ -84,6 +86,10 @@ export const StateContext = ({ children }) => {
                 setShowPlacanje,
                 trazi,
                 setTrazi,
+                showNapustanje,
+                setShowNapustanje,
+                postupak,
+                setPostupak,
             }}
         >
             {children}
