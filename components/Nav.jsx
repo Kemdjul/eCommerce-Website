@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStateContext } from '../context/StateContext';
 
 import KosaricaSidebar from './kosaricaSidebar';
+import Pretrazi from './nav/Pretrazi';
 
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
@@ -12,11 +13,12 @@ import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from 'react-ic
 
 const Nav = () => {
   const router = useRouter();
-  const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const { showCart, setShowCart, totalQuantities, trazi, setTrazi } = useStateContext();
 
   return (
     <nav 
     className="w-full z-50 flex flex-col fixed">
+      {trazi && <Pretrazi />}
       <div className="w-full h-[8.5rem] z-50 flex flex-col bg-white transition-all fixed">
         <div className="w-full h-12 px-32 bg-primary flex items-center justify-between text-white">
           <p>Besplatan trošak dostave iznad 70 eura</p>
@@ -57,7 +59,7 @@ const Nav = () => {
           </ul>
 
           <div className="flex items-center">
-            <AiOutlineSearch className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
+            <AiOutlineSearch onClick={() => setTrazi(true)} className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
             <AiOutlineHeart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer" />
             <button type="button" onClick={() => setShowCart(true)}>
               <AiOutlineShoppingCart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer"/>

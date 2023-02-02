@@ -9,6 +9,8 @@ import Trendy_1 from '../../assets/trendy-1.jpg';
 const New = ({ produkti }) => {
   const [kategorija, setKategorija] = useState('Akcija');
 
+  let count = 0;
+
   return (
     <div className="w-full min-h-screen mt-16 px-32 gap-8 flex flex-col justify-center items-center">
         <div className="flex flex-col gap-4 justify-center items-center">
@@ -47,32 +49,37 @@ const New = ({ produkti }) => {
           </ul>
         </div>
 
-        <div className="w-full h-[33.5rem] flex gap-5 justify-center items-center">
+        <div className="w-full h-[67rem] grid grid-cols-4 gap-5 justify-center items-center">
         {produkti?.map((produkt) => 
           {
-            if (produkt.kategorija.find((kat) => kat == kategorija)) return (
-                <div className="w-[22.5%] h-[100%] pt-8 flex flex-col justify-top items-center">
-                  <Link href={`produkt/${produkt.slug.current}`}>
-                    <div className="w-[100%] h-80 bg-green-800 border-2 border-gray-200">
-                      <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
-                    </div>
-                  </Link>
-                    <div className="py-3 flex flex-col items-center justify-center text-center">
-                      <Link href={`produkt/${produkt.slug.current}`}>
-                        <p className="text-xl font-[500] tracking-widest">{produkt.naziv.toUpperCase()}</p>
-                      </Link>
-                      <div className="flex items-center gap-4">
-                        <p className="text-primary">€{produkt.cijena.toFixed(2)}</p>
-                          {produkt.staraCijena && (<p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}</p>)}
+            
+
+            if (count < 8)
+              if (produkt.kategorija.find((kat) => kat == kategorija)) {
+                count++;
+                return (
+                  <div className="w-full h-full pt-8 flex flex-col justify-top items-center">
+                    <Link href={`produkt/${produkt.slug.current}`}>
+                      <div className="w-[100%] h-80 bg-green-800 border-2 border-gray-200">
+                        <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
                       </div>
-  
-                      <button 
-                        className="mt-1 px-4 py-2 bg-primary text-white rounded-full"
-                        type="button">DODAJ U KOŠARICU</button>
-                    </div>
-                </div>
-              )
-          })}
+                    </Link>
+                      <div className="py-3 flex flex-col items-center justify-center text-center">
+                        <Link href={`produkt/${produkt.slug.current}`}>
+                          <p className="text-xl font-[500] tracking-widest">{produkt.naziv.toUpperCase()}</p>
+                        </Link>
+                        <div className="flex items-center gap-4">
+                          <p className="text-primary">€{produkt.cijena.toFixed(2)}</p>
+                            {produkt.staraCijena && (<p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}</p>)}
+                        </div>
+    
+                        <button 
+                          className="mt-1 px-4 py-2 bg-primary text-white rounded-full"
+                          type="button">DODAJ U KOŠARICU</button>
+                      </div>
+                  </div>
+                )}
+            })}
         </div>
       </div>
   )

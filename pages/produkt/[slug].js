@@ -168,8 +168,7 @@ const ProductDetails = ({ produkt, produkti }) => {
             <div className="flex gap-12 px-10 py-8">
               <div className="absolute px-[27.5rem] pt-10 pb-7 border-b-[6px] border-[#E5E8EA]"/>
               <button type="button" className="text-primary font-[400] text-xl border-b-[6px] pb-10 border-primary z-10">Informacije o proizvodu</button>
-              <button type="button" className="font-[400] text-xl pb-10 z-10">Vodič za veličinu</button>
-              <button type="button" className="font-[400] text-xl pb-10 z-10">Povezani linkovi</button>
+              {produkt.kategorija[0] == "Oxygen Optimal" && <button type="button" className="font-[400] text-xl pb-10 z-10">Vodič za veličinu</button>}
             </div>
 
             <div className="w-full px-10">

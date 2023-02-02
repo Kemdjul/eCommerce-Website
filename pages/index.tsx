@@ -14,7 +14,15 @@ import Blogs from '../components/homepage/Blogs';
 import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 
+import { Poppins } from '@next/font/google';
+
 import { client } from '../lib/client';
+
+const poppins = Poppins({ 
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
+ });
 
 const Home = ({ banneri, produkti }) => {
   return (
@@ -26,7 +34,7 @@ const Home = ({ banneri, produkti }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <main>
+      <main className={poppins.className}>
         <Nav />
         <HeaderBanner banneri={banneri} />
         <IzdvojeniProdukti produkti={produkti} />

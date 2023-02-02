@@ -51,14 +51,14 @@ const kosarica = () => {
 
                 <div className="flex flex-col gap-2 font-[400] text-right">
                   <p>{totalPrice.toFixed(2)}€</p>
-                  <p>{totalPrice > 70 ? '0€' : '4€'}</p>
+                  <p>{totalQuantities != 0 ? totalPrice > 70 ? '0.00€' : '4.00€' : '0.00€'}</p>
                   <p>Ne</p>
                 </div>
               </div>
 
               <div className="flex justify-between px-2 font-[600] text-lg">
                 <p>UKUPNO</p>
-                <p className="text-right">{(totalPrice > 70 ? totalPrice : totalPrice + 4).toFixed(2)}€</p>
+                <p className="text-right">{(totalQuantities != 0 ? totalPrice > 70 ? totalPrice : totalPrice + 4 : 0).toFixed(2)}€</p>
               </div>
 
               <button onClick={() => {handleClick()}} type="button" className="bg-primary rounded-lg h-12 flex justify-center items-center text-white">

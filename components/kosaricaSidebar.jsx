@@ -42,7 +42,7 @@ const kosaricaSidebar = () => {
                 <p className="text-2xl">Ukupno:</p>
                 <p className="font-[400] text-2xl">{totalPrice.toFixed(2)}€</p>
             </div>
-            <Link href="/kosarica">
+            <Link onClick={() => setShowCart(false)} href="/kosarica">
               <div className="mt-8 flex items-center justify-center bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Vidi košaricu</div>
             </Link>
             <button type="button" className="px-4 py-2 mt-8 bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Plaćanje</button>
