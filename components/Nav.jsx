@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStateContext } from '../context/StateContext';
 
+import Burger from './nav/Burger';
 import KosaricaSidebar from './kosaricaSidebar';
 import Pretrazi from './nav/Pretrazi';
 
@@ -10,34 +11,35 @@ import Image from 'next/image';
 import Logo from '../assets/logo.png';
 
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Nav = () => {
   const router = useRouter();
-  const { showCart, setShowCart, totalQuantities, trazi, setTrazi } = useStateContext();
+  const { showCart, setShowCart, totalQuantities, trazi, setTrazi, setShowBurger, showBurger } = useStateContext();
 
   return (
     <nav 
     className="w-full z-50 flex flex-col fixed">
       {trazi && <Pretrazi />}
       <div className="w-full h-[8.5rem] z-50 flex flex-col bg-white transition-all fixed">
-        <div className="w-full h-12 px-32 bg-primary flex items-center justify-between text-white">
-          <p>Besplatan trošak dostave iznad 70 eura</p>
+        <div className="w-full h-12 max-md: px-4 md:px-32 bg-primary flex items-center justify-between text-white">
+          <p className="max-sm:hidden">Besplatan trošak dostave iznad 70 eura</p>
 
           <div className="flex gap-4 items-center">
-            <p>0800 330 022</p>
-            <div className="w-[1px] h-6 bg-gray-400" />
+            <p className="max-sm:hidden">0800 330 022</p>
+            <div className="w-[1px] h-6 bg-gray-400 max-sm:hidden" />
             <p>Prijava / Registracija</p>
           </div>
         </div>
         
-        <div className="h-full flex px-32 items-center justify-between">
+        <div className="h-full flex px-4 md:px-32 items-center justify-between">
             <Image 
               src={Logo} 
               alt="logo" 
               className="h-16 w-32 object-contain"
             />
 
-          <ul className="flex gap-12 items-center text-[18px] opacity-70">
+          <ul className="max-sm:hidden flex md:gap-12 items-center text-[18px] opacity-70">
             <p className={router.pathname === '/' 
               ? "border-b-2 border-primary text-primary" 
               : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/">POČETNA</Link></p>
@@ -68,8 +70,13 @@ const Nav = () => {
               <p className="text-xs text-white">{totalQuantities}</p>
             </div>
           </div>
+
+          <div className="sm:hidden h-full flex items-center justify-center">
+            <GiHamburgerMenu className="text-2xl" onClick={() => setShowBurger(true)} />
+          </div>
         </div>
       </div>
+      {showBurger && <Burger />}
       {showCart && <KosaricaSidebar />}
     </nav>
   )

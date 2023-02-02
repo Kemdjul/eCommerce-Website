@@ -58,9 +58,9 @@ const HeaderBanner = ({ banneri }) => {
           <div className="flex flex-col items-center justify-center keen-slider__slide">
             <img src={urlFor(banner.image.asset._ref)} className="w-full h-screen absolute object-cover" />
             <div className="flex flex-col gap-4 ml-96 w-[35rem] justify-center">
-              <h5 className="text-primary text-2xl font-[600] z-[1]">{banner.smallText1}</h5>
-              <h1 className="text-6xl font-[600] z-[1]">{banner.bigText}</h1>
-              <h5 className="text-[#454545] font-[400] z-[1]">{banner.smallText2}</h5>
+              <h5 className="text-primary md:text-2xl font-[600] z-[1]">{banner.smallText1}</h5>
+              <h1 className="md:text-6xl text-5xl font-[600] z-[1]">{banner.bigText}</h1>
+              <h5 className="text-[#454545] font-[400] z-[1] opacity-0 md:opacity-100">{banner.smallText2}</h5>
               <button 
                 type="button"
                 className="z-[1] px-4 py-2 bg-primary w-48 mt-12 text-white">

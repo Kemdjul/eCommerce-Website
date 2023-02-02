@@ -13,6 +13,7 @@ export const StateContext = ({ children }) => {
     const [trazi, setTrazi] = useState(false);
     const [showNapustanje, setShowNapustanje] = useState(false);
     const [postupak, setPostupak] = useState(1);
+    const [showBurger, setShowBurger] = useState(false);
 
     let foundProduct;
 
@@ -90,6 +91,8 @@ export const StateContext = ({ children }) => {
                 setShowNapustanje,
                 postupak,
                 setPostupak,
+                showBurger,
+                setShowBurger,
             }}
         >
             {children}

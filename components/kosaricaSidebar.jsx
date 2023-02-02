@@ -9,7 +9,7 @@ import { AiOutlineClose, AiOutlineCloseCircle } from 'react-icons/ai';
 
 const kosaricaSidebar = () => {
   const cartRef = useRef();
-  const { totalPrice, cartItems, setShowCart, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, onRemove } = useStateContext();
 
   return (
     <div className="w-full h-screen flex z-[100] sticky" ref={cartRef}>
@@ -18,6 +18,14 @@ const kosaricaSidebar = () => {
 
         <motion.div initial={{ x: 516 }} animate={{ x: 0 }} className="w-[32.25rem] h-full flex flex-col absolute right-0 gap-4 text-[#22262A] items-center bg-white px-4 py-8">
             <h5 className="text-3xl">MOJA KOŠARICA</h5>
+
+            <div className="w-full min-h-32 overflow-auto">
+            {totalQuantities ? '' : (
+              <div>
+                <AiOutlineClose className="absolute right-4 top-4 text-2xl text-primary cursor-pointer" onClick={() => setShowCart(false)} />
+                <p className="px-8 font-[700] text-2xl text-center py-24">Nema proizvoda u košarici.</p>
+              </div>
+            )}
 
             {cartItems.length >= 1 && cartItems.map((item) => (
               <div className="flex flex-col gap-2" key={item._id}>
@@ -40,14 +48,20 @@ const kosaricaSidebar = () => {
                 </div>
               </div>
             ))}
-            <div className="w-full flex px-6 justify-between items-center">
-                <p className="text-2xl">Ukupno:</p>
-                <p className="font-[400] text-2xl">{totalPrice.toFixed(2)}€</p>
             </div>
-            <Link onClick={() => setShowCart(false)} href="/kosarica">
-              <div className="mt-8 flex items-center justify-center bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Vidi košaricu</div>
-            </Link>
-            <button type="button" className="px-4 py-2 mt-8 bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Plaćanje</button>
+
+            {totalQuantities != '0' && (
+              <div>
+                <div className="w-full flex px-6 justify-between items-center">
+                  <p className="text-2xl">Ukupno:</p>
+                  <p className="font-[400] text-2xl">{totalPrice.toFixed(2)}€</p>
+              </div>
+              <Link onClick={() => setShowCart(false)} href="/kosarica">
+                <div className="mt-8 flex items-center justify-center bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Vidi košaricu</div>
+              </Link>
+              <button type="button" className="px-4 py-2 mt-8 bg-primary rounded-lg text-white text-2xl w-64 h-[4.375rem]">Plaćanje</button>
+              </div>
+            )}
         </motion.div>
     </div>
   )

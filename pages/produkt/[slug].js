@@ -77,9 +77,11 @@ const ProductDetails = ({ produkt, produkti }) => {
         <div className="w-full h-screen items-center flex flex-col text-[#262626]">
           <Nav />
 
-          <div className="w-full h-12 flex justify-center items-center gap-10 mt-[8.5rem]">
+          <div className="w-full h-12 flex justify-center items-center bg-[#F6F7F8] py-4 gap-10 mt-[8.5rem]">
             <p className="text-primary font-[400]">Početna</p>
+            <p className="text-[#C1C8CE]">/</p>
             <p className="text-primary font-[400]">Trgovina</p>
+            <p className="text-[#C1C8CE]">/</p>
             <p className="text-[#262626] font-[400]">{produkt.naziv}</p>
           </div>
             
