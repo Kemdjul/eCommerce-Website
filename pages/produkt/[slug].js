@@ -5,6 +5,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { PortableText } from '@portabletext/react';
 import { urlBuilder } from '../../lib/client';
 import { getImageDimensions } from '@sanity/asset-utils';
+import { useMediaQuery } from 'react-responsive';
 
 import CallToAction from '../../components/homepage/CallToAction';
 import Footer from '../../components/homepage/Footer';
@@ -48,17 +49,19 @@ const ProductDetails = ({ produkt, produkti }) => {
   const [slider, setSlider] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+
   const [sliderRef, instanceRef] = useKeenSlider(
   {
     initial: 0,
     rubberband: false,
     slides: {
-      perView: 4,
-      spacing: 12,
+      perView: isMobile ? 1 : 4,
+      spacing: isMobile ? 1 : 12,
     },
-    /*slideChanged(s) {
+    slideChanged(s) {
       setCurrentSlide(s.track.details.rel)
-    },*/
+    },
     created() {
       setLoaded(true)
     },
@@ -74,10 +77,10 @@ const ProductDetails = ({ produkt, produkti }) => {
   }
 
     return (
-        <div className="w-full h-screen items-center flex flex-col text-[#262626]">
+        <div className="md:w-full max-md:w-screen md:h-screen items-center flex flex-col text-[#262626]">
           <Nav />
 
-          <div className="w-full h-12 flex justify-center items-center bg-[#F6F7F8] py-4 gap-10 mt-[8.5rem]">
+          <div className="w-full h-12 flex justify-center items-center bg-[#F6F7F8] py-4 md:gap-10 max-md:gap-1 mt-[8.5rem]">
             <p className="text-primary font-[400]">Početna</p>
             <p className="text-[#C1C8CE]">/</p>
             <p className="text-primary font-[400]">Trgovina</p>
@@ -86,7 +89,7 @@ const ProductDetails = ({ produkt, produkti }) => {
           </div>
             
 
-          <div className="flex w-[63.5rem] gap-20 justify-center mt-8">
+          <div className="flex max-md:flex-col md:w-[63.5rem] gap-20 justify-center mt-8">
             <div className="flex flex-col gap-4">
               <img src={urlFor(produkt.image[slider].asset._ref)} className="h-96 w-96 object-contain" />
               <div className="flex justify-center">
@@ -98,29 +101,26 @@ const ProductDetails = ({ produkt, produkti }) => {
               </div>
             </div>
 
-            <div className="flex flex-col w-96 h-80">
-              <h4 className="text-3xl font-[500]">{produkt.naziv}</h4>
+            <div className="flex flex-col md:w-96 max-md:px-10 h-80">
+              <h4 className="text-3xl font-[500] max-md:text-center">{produkt.naziv}</h4>
 
-              <div className="flex items-center mt-4">
+              <div className="flex items-center mt-4 gap-4">
                 <p className="text-primary font-[700] text-4xl">{produkt.cijena.toFixed(2)}€</p>
-                <p></p>
+                <p>{produkt.staraCijena ? produkt.staraCijena : ''}</p>
                 <p></p>
               </div>
 
               {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijena.toFixed(2)}€</p>}
 
-              <div className="flex w-full justify-between mt-6">
+              <div className="flex w-full md:justify-between max-md:justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">
                   <p className="">Dostupnost:</p>
                   <p>Kategorija:</p>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <p>Na zalihi</p>
-                  <p>{produkt.kategorija[0]}</p>
-                  <div className="flex gap-2">
-                  
-                  </div>
+                  <p className="max-md:text-right">Na zalihi</p>
+                  <p className="max-md:text-right">{produkt.kategorija[0]}</p>
                 </div>
               </div>
 
@@ -139,7 +139,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                 <p>Veličina</p>
               </div>)}
 
-              <div className="w-full flex justify-between mt-28">
+              <div className="w-full flex justify-between md:mt-28 max-md:mt-10">
                 <div className="flex">
                   <button type="button" onClick={decQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
                     <AiOutlineMinus className="text-primary" />
@@ -166,22 +166,22 @@ const ProductDetails = ({ produkt, produkti }) => {
             </div>
           </div>
 
-          <div className="w-[60rem] mt-16 pb-8 bg-[#FAFAFB] rounded-lg">
+          <div className="md:w-[60rem] md:mt-16 max-md:mt-8 pb-8 bg-[#FAFAFB] rounded-lg">
             <div className="flex gap-12 px-10 py-8">
-              <div className="absolute px-[27.5rem] pt-10 pb-7 border-b-[6px] border-[#E5E8EA]"/>
+              <div className="absolute md:px-[27.5rem] pt-10 pb-7 border-b-[6px] border-[#E5E8EA]"/>
               <button type="button" className="text-primary font-[400] text-xl border-b-[6px] pb-10 border-primary z-10">Informacije o proizvodu</button>
               {produkt.kategorija[0] == "Oxygen Optimal" && <button type="button" className="font-[400] text-xl pb-10 z-10">Vodič za veličinu</button>}
             </div>
 
-            <div className="w-full px-10">
+            <div className="md:w-full max-md:w-screen md:px-10 max-md:px-4">
               <PortableText value={produkt.opis} components={components} />
             </div>
           </div>
 
-          <div className="w-full flex flex-col gap-8 justify-center items-center">
-            <h3 className="text-4xl">POVEZANI PROIZVODI</h3>
+          <div className="md:w-full max-md:w-screen max-md:pt-16 flex flex-col md:gap-8 justify-center items-center">
+            <h3 className="md:text-4xl max-md:text-3xl">POVEZANI PROIZVODI</h3>
 
-            <div ref={sliderRef} className="flex w-[80rem] keen-slider">
+            <div ref={sliderRef} className="flex md:w-[80rem] max-md:w-screen max-md:overflow-hidden keen-slider">
             {produkti?.map((slicniProdukt) => (
               <div className="w-64 flex flex-col pt-8 items-center keen-slider__slide">
                 <Link href={`${slicniProdukt.slug.current}`}>
@@ -192,7 +192,7 @@ const ProductDetails = ({ produkt, produkti }) => {
 
                 <div className="py-3 flex flex-col items-center">
                   <Link href={`${produkt.slug.current}`}>
-                    <p className="text-3xl text-center">{slicniProdukt.naziv}</p>
+                    <p className="md:text-3xl max-md:text-xl text-center">{slicniProdukt.naziv}</p>
                   </Link>
                   </div>
               </div>

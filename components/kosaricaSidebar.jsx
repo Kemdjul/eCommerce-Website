@@ -12,11 +12,11 @@ const kosaricaSidebar = () => {
   const { totalPrice, totalQuantities, cartItems, setShowCart, onRemove } = useStateContext();
 
   return (
-    <div className="w-full h-screen flex z-[100] sticky" ref={cartRef}>
-        <div className="w-full absolute h-full bg-[#D9D9D9] opacity-50" onClick={() => setShowCart(false)}>
+    <div className="md:w-full max-md:w-screen h-screen flex z-[100] sticky" ref={cartRef}>
+        <div className="w-full absolute h-full bg-[#D9D9D9] opacity-50 max-md:hidden" onClick={() => setShowCart(false)}>
         </div>
 
-        <motion.div initial={{ x: 516 }} animate={{ x: 0 }} className="w-[32.25rem] h-full flex flex-col absolute right-0 gap-4 text-[#22262A] items-center bg-white px-4 py-8">
+        <motion.div initial={{ x: 516 }} animate={{ x: 0 }} className="md:w-[32.25rem] h-full flex flex-col absolute right-0 gap-4 text-[#22262A] items-center bg-white px-4 py-8">
             <h5 className="text-3xl">MOJA KOŠARICA</h5>
 
             <div className="w-full min-h-32 overflow-auto">

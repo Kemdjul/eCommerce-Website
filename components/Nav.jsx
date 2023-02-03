@@ -21,8 +21,8 @@ const Nav = () => {
     <nav 
     className="w-full z-50 flex flex-col fixed">
       {trazi && <Pretrazi />}
-      <div className="w-full h-[8.5rem] z-50 flex flex-col bg-white transition-all fixed">
-        <div className="w-full h-12 max-md: px-4 md:px-32 bg-primary flex items-center justify-between text-white">
+      <div className="md:w-full max-md:w-screen h-[8.5rem] z-50 flex flex-col bg-white transition-all fixed">
+        <div className="md:w-full max-md:w-screen h-12 max-md: px-4 md:px-32 bg-primary flex items-center justify-between text-white">
           <p className="max-sm:hidden">Besplatan trošak dostave iznad 70 eura</p>
 
           <div className="flex gap-4 items-center">
@@ -39,7 +39,7 @@ const Nav = () => {
               className="h-16 w-32 object-contain"
             />
 
-          <ul className="max-sm:hidden flex md:gap-12 items-center text-[18px] opacity-70">
+          <ul className="max-md:hidden flex md:gap-12 items-center text-[18px] opacity-70">
             <p className={router.pathname === '/' 
               ? "border-b-2 border-primary text-primary" 
               : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/">POČETNA</Link></p>
@@ -71,7 +71,7 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="sm:hidden h-full flex items-center justify-center">
+          <div className="md:hidden h-full flex items-center justify-center">
             <GiHamburgerMenu className="text-2xl" onClick={() => setShowBurger(true)} />
           </div>
         </div>
