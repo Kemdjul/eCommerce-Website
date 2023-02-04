@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const Context = createContext();
 
@@ -14,6 +14,7 @@ export const StateContext = ({ children }) => {
     const [showNapustanje, setShowNapustanje] = useState(false);
     const [postupak, setPostupak] = useState(1);
     const [showBurger, setShowBurger] = useState(false);
+    const [sortirajPo, setSortirajPo] = useState();
 
     let foundProduct;
 
@@ -93,6 +94,8 @@ export const StateContext = ({ children }) => {
                 setPostupak,
                 showBurger,
                 setShowBurger,
+                sortirajPo,
+                setSortirajPo,
             }}
         >
             {children}
