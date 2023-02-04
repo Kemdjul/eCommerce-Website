@@ -10,7 +10,6 @@ import { AiOutlineHeart, AiOutlineShopping } from 'react-icons/ai';
 import { useStateContext } from '../../context/StateContext';
 
 const ListaProdukata = ({ produkti }) => {
-    const [kategorija, setKategorija] = useState('');
     const [value, setValue] = useState([0, 300]);
     const [totalCount, setTotalCount] = useState(0);
     const [productsShown, setProductsShown] = useState(0);
@@ -19,6 +18,8 @@ const ListaProdukata = ({ produkti }) => {
     const [prikazi, setPrikazi] = useState(9);
     const [showOptions1, setShowOptions1] = useState(false);
     const [showOptions2, setShowOptions2] = useState(false);
+
+    const { kategorija, setKategorija } = useStateContext();
 
     useEffect(() => {
         produkti.map(() => setTotalCount((prevCount) => prevCount + 1));
@@ -143,15 +144,15 @@ const ListaProdukata = ({ produkti }) => {
                     </div>
                 </div>
 
-                <div className="w-full min-h-96 grid max-md:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-5 justify-between text-center">
+                <div className="w-full min-h-96 grid max-md:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-12 justify-between text-center">
                     {produkti?.map((produkt) => {
                         if (kategorija) {
                             if (produkt.kategorija[0] == kategorija) {
                                 if (produkt.cijena > value[0] && produkt.cijena < value[1]) return (
                                     <div className="flex flex-col gap-2 items-center">
                                         <Link href={`produkt/${produkt.slug.current}`}>
-                                            <div className="border-2 border-[#E8E8E8]">
-                                                <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain" />
+                                            <div className="h-56 w-56">
+                                                <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain border-2 border-[#E8E8E8]" />
                                             </div>
                                             <p className="text-xl font-[700]">{produkt.naziv}</p>
                                             <div className="flex gap-2 items-center justify-center">
@@ -167,15 +168,15 @@ const ListaProdukata = ({ produkti }) => {
 
                         if (produkt.cijena > value[0] && produkt.cijena < value[1]) return (
                             <div className="flex flex-col gap-2 items-center">
-                                <Link href={`produkt/${produkt.slug.current}`}>
+                                <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
                                     <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
                                         <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>
                                         <Link href={`produkt/${produkt.slug.current}`}>
                                             <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineShopping /></p>
                                         </Link>
                                     </div>
-                                    <div className="border-2 border-[#E8E8E8]">
-                                        <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain" />
+                                    <div className="w-56 h-56">
+                                        <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain border-2 border-[#E8E8E8]" />
                                     </div>
                                     <p className="text-xl font-[700]">{produkt.naziv}</p>
                                     <div className="flex gap-2 items-center justify-center">

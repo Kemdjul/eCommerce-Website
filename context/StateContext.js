@@ -15,6 +15,7 @@ export const StateContext = ({ children }) => {
     const [postupak, setPostupak] = useState(1);
     const [showBurger, setShowBurger] = useState(false);
     const [sortirajPo, setSortirajPo] = useState();
+    const [kategorija, setKategorija] = useState('');
 
     let foundProduct;
 
@@ -96,6 +97,8 @@ export const StateContext = ({ children }) => {
                 setShowBurger,
                 sortirajPo,
                 setSortirajPo,
+                kategorija,
+                setKategorija,
             }}
         >
             {children}

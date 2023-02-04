@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStateContext } from '../context/StateContext';
+import axios from 'axios';
 
 import Burger from './nav/Burger';
 import KosaricaSidebar from './kosaricaSidebar';
@@ -17,6 +18,8 @@ const Nav = () => {
   const router = useRouter();
   const { showCart, setShowCart, totalQuantities, trazi, setTrazi, setShowBurger, showBurger } = useStateContext();
 
+
+
   return (
     <nav 
     className="w-full z-50 flex flex-col fixed">
@@ -27,17 +30,19 @@ const Nav = () => {
 
           <div className="flex gap-4 items-center">
             <p className="max-sm:hidden">0800 330 022</p>
-            <div className="w-[1px] h-6 bg-gray-400 max-sm:hidden" />
+            <div className="w-[1px] h-6 bg-gray-400 max-sm:hidden md:items-center md:justify-between" />
             <p>Prijava / Registracija</p>
           </div>
         </div>
         
         <div className="h-full flex px-4 md:px-32 items-center justify-between">
-            <Image 
-              src={Logo} 
-              alt="logo" 
-              className="h-16 w-32 object-contain"
-            />
+            <Link href='/'>
+              <Image 
+                src={Logo} 
+                alt="logo" 
+                className="h-16 w-32 object-contain"
+              />
+            </Link>
 
           <ul className="max-md:hidden flex md:gap-12 items-center text-[18px] opacity-70">
             <p className={router.pathname === '/' 

@@ -13,7 +13,7 @@ const Footer = () => {
         <AiOutlineYoutube className="max-md:text-3xl" />
       </div>
 
-      <p className="font-[400]">© 2023, <span className="text-primary">ODABERI-ZDRAVLJE</span>. Sva prava zadržana.</p>
+      <p className="font-[400] text-center">© 2023, <span className="text-primary">ODABERI-ZDRAVLJE</span>. Sva prava zadržana.</p>
     
       <div className="flex gap-4">
 

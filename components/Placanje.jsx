@@ -19,13 +19,27 @@ const Placanje = () => {
     const [napomena, setNapomena] = useState('');
     const { postupak, setPostupak, cartItems, setShowPlacanje, showNapustanje, setShowNapustanje } = useStateContext();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setImePrezime(event.target.fime.value + ' ' + event.target.fprezime.value);
-        setEmail(event.target.femail.value);
-        setBrojTel(event.target.fbroj.value);
-        setAdresa(event.target.fadresa.value + ' ' + event.target.fgrad.value + ' ' + event.target.fpostbroj.value);
-        setNapomena(event.target.fnapomena.value);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = {};
+        Array.from(e.currentTarget.elements).forEach(field => {
+            if ( !field.name ) return;
+            formData[field.name] = field.value;
+        });
+
+        fetch('/api/mail', {
+            method: 'post',
+            body: JSON.stringify(formData),
+        });
+
+        console.log(formData);
+
+        setImePrezime(e.target.fime.value + ' ' + event.target.fprezime.value);
+        setEmail(e.target.email.value);
+        setBrojTel(e.target.fbroj.value);
+        setAdresa(e.target.fadresa.value + ' ' + e.target.fgrad.value + ' ' + e.target.fpostbroj.value);
+        setNapomena(e.target.fnapomena.value);
         setPostupak(2);
     }
 
@@ -94,7 +108,7 @@ const Placanje = () => {
                     <div className="flex gap-[10%]">
                         <div className="flex flex-col w-[45%] gap-6">
                             <input required={true} type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input required={true} type="email" id="fime" name="femail" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="email" id="ime" name="email" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <input required={true} type="text" id="fime" name="fadresa" placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                         </div>
 
