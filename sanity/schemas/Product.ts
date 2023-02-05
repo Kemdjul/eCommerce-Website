@@ -34,6 +34,11 @@ export default {
         type: 'number',
       },
       {
+        name: 'cijenaSPopustom',
+        title: 'Cijena s popustom',
+        type: 'number',
+      },
+      {
         name: 'staraCijena',
         title: 'Stara cijena',
         type: 'number',

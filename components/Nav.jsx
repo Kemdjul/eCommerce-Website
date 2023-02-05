@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStateContext } from '../context/StateContext';
-import axios from 'axios';
 
 import Burger from './nav/Burger';
 import KosaricaSidebar from './kosaricaSidebar';
@@ -17,8 +16,6 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 const Nav = () => {
   const router = useRouter();
   const { showCart, setShowCart, totalQuantities, trazi, setTrazi, setShowBurger, showBurger } = useStateContext();
-
-
 
   return (
     <nav 
