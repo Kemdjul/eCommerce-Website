@@ -111,7 +111,7 @@ const ListaProdukata = ({ produkti }) => {
             </div>
 
             <div className="w-full flex flex-col md:pl-8 max-md:px-4">
-                <div className="w-full h-12 mb-8 flex justify-between items-center px-4 bg-[#E8E8E8]">
+                <div className="w-full h-12 mb-8 flex justify-between items-center px-4 bg-[#E8E8E8] max-md:hidden">
                     <p>9 od {totalCount}</p>
                     <div className="flex max gap-4">
                         <div onClick={() => setShowOptions1(!showOptions1)} className={showOptions1 ? "flex w-56 h-18 gap-2 translate-y-3 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "flex w-56 h-9 gap-2 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>

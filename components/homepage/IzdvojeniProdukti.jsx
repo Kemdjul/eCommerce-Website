@@ -79,18 +79,19 @@ const Trendy = ({ produkti }) => {
                     <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />
                   </div>
                 </Link>
-                  <div className="py-3 flex flex-col items-center">
+                  <div className="py-3 flex flex-col items-center text-center">
                     <Link href={`produkt/${produkt.slug.current}`}>
                       <p className="text-xl font-[500] tracking-widest">{produkt.naziv.toUpperCase()}</p>
-                    </Link>
-                    <div className="flex items-center gap-4">
-                      <p className="text-primary">{produkt.cijena.toFixed(2)}€</p>
-                      {produkt.staraCijena && <p className="text-sm text-[#828181] line-through">{produkt.staraCijena.toFixed(2)}€</p>}
+                    
+                    <div className="flex items-center justify-center gap-4">
+                      <p className="text-primary">{produkt.cijenaSPopustom ? produkt.cijenaSPopustom.toFixed(2) : produkt.cijena.toFixed(2)}€</p>
+                      {produkt.cijenaSPopustom && <p className="text-sm text-[#828181] line-through">{produkt.cijena.toFixed(2)}€</p>}
                     </div>
 
                     <button 
                       className="mt-1 px-4 py-2 bg-primary text-white rounded-full"
                       type="button">DODAJ U KOŠARICU</button>
+                      </Link>
                   </div>
               </div>
             )})}

@@ -51,12 +51,12 @@ const Nav = () => {
             <p className={router.pathname === '/emisije' 
               ? "border-b-2 border-primary text-primary" 
               : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/emisije">EMISIJE</Link></p>
-            <p className={router.pathname === '/blog' 
+            <p className={router.pathname === '/clanci' 
               ? "border-b-2 border-primary text-primary" 
-              : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/blog">NOVOSTI</Link></p>
-              <p className={router.pathname === '/kontakt' 
+              : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/clanci">NOVOSTI</Link></p>
+              <p className={router.pathname === '/o-nama' 
               ? "border-b-2 border-primary text-primary" 
-              : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/kontakt">O NAMA</Link></p>
+              : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/o-nama">O NAMA</Link></p>
             <p className={router.pathname === '/kontakt' 
               ? "border-b-2 border-primary text-primary" 
               : "hover:text-primary hover:border-b-2 border-primary duration-200 transition-all"}><Link href="/kontakt">KONTAKT</Link></p>

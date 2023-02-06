@@ -19,9 +19,9 @@ export const StateContext = ({ children }) => {
 
     let foundProduct;
 
-    const onAdd = (product, quantity) => {
-        localStorage.removeItem('cart');
-        const checkProductInCart = cartItems.find((item) => item._id === product._id);
+    const onAdd = (product, quantity, boja, velicina) => {
+        /*localStorage.removeItem('cart');*/
+        const checkProductInCart = cartItems.find((item) => item._id === product._id && item.izabranaBoja === boja && item.izabranaVelicina === velicina);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.cijena * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
@@ -32,27 +32,29 @@ export const StateContext = ({ children }) => {
                     quantity: cartProduct.quantity + quantity
                 }
             })
-            localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+            /*localStorage.setItem('cart', JSON.stringify(updatedCartItems));*/
             setCartItems(updatedCartItems);
         } else {
             product.quantity = quantity;
+            product.izabranaBoja = boja;
+            product.izabranaVelicina = velicina;
             const newCart = [...cartItems, { ...product }];
-            localStorage.setItem('cart', JSON.stringify(newCart));
+            /*localStorage.setItem('cart', JSON.stringify(newCart));*/
             setCartItems([...cartItems, { ...product }]);
         }
     }
 
     const onRemove = (product) => {
-        localStorage.removeItem('cart');
-        foundProduct = cartItems.find((item) => item._id === product._id);
-        const newCartItems = cartItems.filter((item) => item._id !== product._id);
+        /*localStorage.removeItem('cart');*/
+        foundProduct = cartItems.find((item) => item._id === product._id && item.izabranaBoja === product.izabranaBoja && item.izabranaVelicina === product.izabranaVelicina);
+        const newCartItems = cartItems.filter((item) => item._id !== product._id || item.izabranaBoja !== product.izabranaBoja || item.izabranaVelicina !== product.izabranaVelicina);
     
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.cijena * foundProduct.quantity);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
 
-        if (newCartItems != '') {
+        /*if (newCartItems != '') {
             localStorage.setItem('cart', JSON.stringify(newCartItems));
-        }
+        }*/
 
         setCartItems(newCartItems);
       }

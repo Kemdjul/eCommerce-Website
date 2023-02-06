@@ -52,7 +52,9 @@ const Placanje = () => {
                     _ref: cartItems[index]._id,
                 },
                 kolicina: cartItems[index].quantity,
-            })
+                izabranaBoja: cartItems[index].izabranaBoja,
+                izabranaVelicina: cartItems[index].izabranaVelicina,
+            });
         });
         
         return array;
@@ -61,7 +63,6 @@ const Placanje = () => {
     const cartItemsTransformed = transformCartItems();
 
     let item = [{
-        _id: '1',
         _type: 'narudzbe',
         imePrezime: imePrezime,
         proizvodi: cartItemsTransformed,

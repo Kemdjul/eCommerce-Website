@@ -26,6 +26,14 @@ export default {
                 type: 'number',
                 name: 'kolicina',
               },
+              {
+                type: 'string',
+                name: 'izabranaBoja',
+              },
+              {
+                type: 'string',
+                name: 'izabranaVelicina',
+              },
             ],
           },
         ],

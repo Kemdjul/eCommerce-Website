@@ -3,14 +3,13 @@ import Link from 'next/link';
 import { client, urlFor } from '../../lib/client';
 import { useKeenSlider } from "keen-slider/react";
 import { PortableText } from '@portabletext/react';
-import { urlBuilder } from '../../lib/client';
 import { getImageDimensions } from '@sanity/asset-utils';
 import { useMediaQuery } from 'react-responsive';
 
 import CallToAction from '../../components/homepage/CallToAction';
 import Footer from '../../components/homepage/Footer';
 
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart, AiFillCaretDown } from 'react-icons/ai';
 
 import Nav from '../../components/Nav';
 import { useStateContext } from '../../context/StateContext';
@@ -50,6 +49,10 @@ const ProductDetails = ({ produkt, produkti }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const [showBoje, setShowBoje] = useState(false);
+  const [izabranaBoja, setIzabranaBoja] = useState(produkt.boja[0]);
+  const [showVelicina, setShowVelicina] = useState(false);
+  const [izabranaVelicina, setIzabranaVelicina] = useState(produkt.velicina[0]);
 
   const [sliderRef, instanceRef] = useKeenSlider(
   {
@@ -65,15 +68,17 @@ const ProductDetails = ({ produkt, produkti }) => {
     created() {
       setLoaded(true)
     },
-  },
-  [AdaptiveHeight]
-  );
+  }, [AdaptiveHeight]);
 
   const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
   const handleClick = () => {
-    onAdd(produkt, qty);
+    onAdd(produkt, qty, izabranaBoja, izabranaVelicina);
 
     setShowCart(true);
+  }
+
+  const handleOdaberiBoju = (boja) => {
+    setIzabranaBoja(boja);
   }
 
     return (
@@ -101,16 +106,16 @@ const ProductDetails = ({ produkt, produkti }) => {
               </div>
             </div>
 
-            <div className="flex flex-col md:w-96 max-md:px-10 h-80">
+            <div className="flex flex-col md:w-96 max-md:px-10">
               <h4 className="text-3xl font-[500] max-md:text-center">{produkt.naziv}</h4>
 
               <div className="flex items-center mt-4 gap-4">
-                <p className="text-primary font-[700] text-4xl">{produkt.cijena.toFixed(2)}€</p>
-                <p>{produkt.staraCijena ? produkt.staraCijena : ''}</p>
+                <p className="text-primary font-[700] text-4xl">{produkt.cijenaSPopustom ? produkt.cijenaSPopustom.toFixed(2) : produkt.cijena.toFixed(2)}€</p>
+                <p>{produkt.cijenaSPopustom ? produkt.cijena.toFixed(2) : ''}</p>
                 <p></p>
               </div>
 
-              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijena.toFixed(2)}€</p>}
+              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijenaSPopustom ? produkt.cijenaSPopustom.toFixed(2) : produkt.cijena.toFixed(2)}€</p>}
 
               <div className="flex w-full md:justify-between max-md:justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">
@@ -125,18 +130,33 @@ const ProductDetails = ({ produkt, produkti }) => {
               </div>
 
               {produkt.boja && (<div className="w-full">
-                <div className="flex justify-between items-center mt-10">
+                <div className={showBoje ? "flex justify-between mt-10 pb-16" : "flex justify-between mt-10"}>
                   <p className="text-xl font-[400]">Odabir boje:</p>
-                  <div className="flex gap-3">
-                    {produkt.boja.map((boja) => (
-                      <div className={`w-6 h-6 rounded-full bg-${boja}`} />
-                    ))}
+                  <div className="flex flex-col gap-3 w-28">
+                    <p className="flex items-center gap-2" onClick={() => setShowBoje(!showBoje)}>{izabranaBoja} <AiFillCaretDown /></p>
+                    <div onClick={() => setShowBoje(!showBoje)} className={showBoje ? "flex flex-col h-6 max-md:gap-2" : "hidden"}>
+                      {produkt.boja.map((boja) => {
+                        if(boja != izabranaBoja)
+                          return (<p onClick={() => setIzabranaBoja(boja)}>{boja}</p>)
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>)}
 
-              {produkt.velicina && (<div className="w-full justify-between flex mt-6">
-                <p>Veličina</p>
+              {produkt.velicina && (<div className="w-full">
+                <div className={showVelicina ? "flex justify-between mt-10 pb-12" : "flex justify-between mt-10"}>
+                  <p className="text-xl font-[400]">Odabir veličine:</p>
+                  <div className="flex flex-col gap-3 w-28">
+                    <p className="flex items-center gap-2" onClick={() => setShowVelicina(!showVelicina)}>{izabranaVelicina} <AiFillCaretDown /></p>
+                    <div onClick={() => setShowVelicina(!showVelicina)} className={showVelicina ? "flex flex-col h-6" : "hidden"}>
+                      {produkt.velicina.map((vel) => {
+                        if (vel != izabranaVelicina)
+                          return (<p onClick={() => setIzabranaVelicina(vel)}>{vel}</p>)
+                      })}
+                    </div>
+                  </div>
+                </div>
               </div>)}
 
               <div className="w-full flex justify-between md:mt-28 max-md:mt-10">

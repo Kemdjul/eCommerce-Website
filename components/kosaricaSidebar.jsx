@@ -39,6 +39,8 @@ const kosaricaSidebar = () => {
                     <div className="flex gap-4 font-[400]">
                       <p>{item.quantity}x</p>
                       <p>{item.cijena.toFixed(2)}€</p>
+                      <p>{item.izabranaBoja}</p>
+                      <p>{item.izabranaVelicina}</p>
                     </div>
                   </div>
       

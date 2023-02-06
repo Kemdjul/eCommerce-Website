@@ -20,7 +20,7 @@ const kosarica = () => {
     <div className="flex flex-col gap-8 text-[#22262A]">
         <Nav />
         {showPlacanje && <Placanje />}
-        <Banner text="TRGOVINA" smallText="POČETNA / TRGOVINA" />
+        <Banner text="KOŠARICA" smallText="" />
         <div className="h-12 mx-72 px-8 border-b-2 border-[#F6F7F8] flex items-center justify-between ">
           <h5 className="text-[#22262A] text-xl">PROIZVODI</h5>
           <div className="flex gap-14">
