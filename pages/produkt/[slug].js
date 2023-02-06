@@ -50,9 +50,9 @@ const ProductDetails = ({ produkt, produkti }) => {
   const [loaded, setLoaded] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showBoje, setShowBoje] = useState(false);
-  const [izabranaBoja, setIzabranaBoja] = useState(produkt.boja[0]);
+  const [izabranaBoja, setIzabranaBoja] = useState(produkt.boja ? produkt.boja[0] : '');
   const [showVelicina, setShowVelicina] = useState(false);
-  const [izabranaVelicina, setIzabranaVelicina] = useState(produkt.velicina[0]);
+  const [izabranaVelicina, setIzabranaVelicina] = useState(produkt.velicina ? produkt.velicina[0] : '');
 
   const [sliderRef, instanceRef] = useKeenSlider(
   {
@@ -147,7 +147,7 @@ const ProductDetails = ({ produkt, produkti }) => {
               {produkt.velicina && (<div className="w-full">
                 <div className={showVelicina ? "flex justify-between mt-10 pb-12" : "flex justify-between mt-10"}>
                   <p className="text-xl font-[400]">Odabir veličine:</p>
-                  <div className="flex flex-col gap-3 w-28">
+                  <div className="flex flex-col gap-3 w-28 cursor-pointer">
                     <p className="flex items-center gap-2" onClick={() => setShowVelicina(!showVelicina)}>{izabranaVelicina} <AiFillCaretDown /></p>
                     <div onClick={() => setShowVelicina(!showVelicina)} className={showVelicina ? "flex flex-col h-6" : "hidden"}>
                       {produkt.velicina.map((vel) => {

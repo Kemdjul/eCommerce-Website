@@ -117,7 +117,7 @@ const ListaProdukata = ({ produkti }) => {
                         <div onClick={() => setShowOptions1(!showOptions1)} className={showOptions1 ? "flex w-56 h-18 gap-2 translate-y-3 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "flex w-56 h-9 gap-2 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>
                             <p>Sortiraj po:</p>
 
-                            <div className="flex flex-col">
+                            <div className="flex flex-col cursor-pointer">
                                 <p>{sortirajPo}</p>
 
                                 <div className={showOptions1 ? "flex flex-col" : "hidden"}>
@@ -134,7 +134,7 @@ const ListaProdukata = ({ produkti }) => {
                             <div className="flex flex-col">
                                 <p>{prikazi}</p>
 
-                                <div className={showOptions2 ? "flex flex-col" : "hidden"}>
+                                <div className={showOptions2 ? "flex flex-col cursor-pointer" : "hidden"}>
                                     {prikaziArray.map((prik) => {
                                     if(prik != prikazi) return (<p onClick={() => handleChangePrikazi(prik)}>{prik}</p>);
                                     })}

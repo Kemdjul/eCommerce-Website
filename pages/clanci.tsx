@@ -5,16 +5,29 @@ import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 import Nav from '../components/Nav';
 
-const clanci = () => {
+import { client } from '../lib/client';
+
+const clanci = ({ blogovi }) => {
   return (
     <div>
         <Nav />
         <Banner text="NOVOSTI" smallText="POČETNA / NOVOSTI" />
-        <ListaBlogova />
+        <ListaBlogova blogovi={blogovi} />
         <CallToAction />
         <Footer />
     </div>
   )
 }
+
+export const getServerSideProps = async () => {
+    const blogoviQuery = `*[_type == "blogovi"]`;
+    const produkti = await client.fetch(blogoviQuery);
+  
+    return {
+      props: {
+        blogovi,
+      },
+    };
+  }
 
 export default clanci

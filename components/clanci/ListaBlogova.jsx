@@ -8,15 +8,6 @@ const ListaBlogova = ({ blogovi }) => {
   )
 }
 
-export const getServerSideProps = async () => {
-    const blogoviQuery = `*[_type == "blogovi"]`;
-    const produkti = await client.fetch(blogoviQuery);
-  
-    return {
-      props: {
-        blogovi,
-      },
-    };
-  }
+
 
 export default ListaBlogova

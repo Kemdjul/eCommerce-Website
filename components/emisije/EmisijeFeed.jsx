@@ -150,7 +150,7 @@ const EmisijeFeed = () => {
     ]
 
     return (
-    <div className="w-full min-h-screen bg-red-400">
+    <div className="w-full min-h-screen">
         <div className="grid grid-cols-3 gap-x-8 gap-y-8 px-16 py-12">
             {emisije.map((em) => (
                 <div className="flex flex-col items-center gap-4">
