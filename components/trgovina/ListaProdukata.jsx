@@ -5,7 +5,7 @@ import Dropdown from './Dropdown';
 
 import Box from '@mui/material/Box';
 import { Slider } from '@mui/material';
-import { AiOutlineHeart, AiOutlineShopping } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineShopping, AiOutlineClose } from 'react-icons/ai';
 
 import { useStateContext } from '../../context/StateContext';
 
@@ -19,7 +19,7 @@ const ListaProdukata = ({ produkti }) => {
     const [showOptions1, setShowOptions1] = useState(false);
     const [showOptions2, setShowOptions2] = useState(false);
 
-    const { kategorija, setKategorija } = useStateContext();
+    const { kategorija, setKategorija, trazi, traziValue, setTraziValue } = useStateContext();
 
     useEffect(() => {
         produkti.map(() => setTotalCount((prevCount) => prevCount + 1));
@@ -113,7 +113,13 @@ const ListaProdukata = ({ produkti }) => {
             <div className="w-full flex flex-col md:pl-8 max-md:px-4">
                 <div className="w-full h-12 mb-8 flex justify-between items-center px-4 bg-[#E8E8E8] max-md:hidden">
                     <p>9 od {totalCount}</p>
-                    <div className="flex max gap-4">
+
+                    <div className="flex items-center gap-2">
+                        <p>{traziValue}</p>
+                        {traziValue && <AiOutlineClose onClick={() => setTraziValue('')} className="text-red-600 cursor-pointer" />}
+                    </div>
+
+                    <div className="flex max-md:hidden gap-4">
                         <div onClick={() => setShowOptions1(!showOptions1)} className={showOptions1 ? "flex w-56 h-18 gap-2 translate-y-3 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "flex w-56 h-9 gap-2 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>
                             <p>Sortiraj po:</p>
 
@@ -146,21 +152,54 @@ const ListaProdukata = ({ produkti }) => {
 
                 <div className="w-full min-h-96 grid max-md:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-12 justify-between text-center">
                     {produkti?.map((produkt) => {
+                        if (traziValue) {
+                            if (produkt.naziv.toUpperCase().includes(traziValue.toUpperCase())) {
+                                return (
+                                    <div className="flex flex-col gap-2 items-center">
+                                <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
+                                    <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
+                                        <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>
+                                        <Link href={`produkt/${produkt.slug.current}`}>
+                                            <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineShopping /></p>
+                                        </Link>
+                                    </div>
+                                    <div className="w-56 h-56">
+                                        <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain border-2 border-[#E8E8E8]" />
+                                    </div>
+                                    <p className="text-xl font-[700]">{produkt.naziv}</p>
+                                    <div className="flex gap-2 items-center justify-center">
+                                        <p className="text-lg">{produkt.cijena.toFixed(2)}€</p>
+                                        {produkt.staraCijena && <p className="text-[#9098B1] line-through">{produkt.staraCijena?.toFixed(2)}€</p>}
+                                    </div>
+                                </Link>
+                            </div>
+                                )
+                            }
+
+                            else return;
+                        }
+
                         if (kategorija) {
                             if (produkt.kategorija[0] == kategorija) {
                                 if (produkt.cijena > value[0] && produkt.cijena < value[1]) return (
                                     <div className="flex flex-col gap-2 items-center">
+                                <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
+                                    <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
+                                        <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>
                                         <Link href={`produkt/${produkt.slug.current}`}>
-                                            <div className="h-56 w-56">
-                                                <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain border-2 border-[#E8E8E8]" />
-                                            </div>
-                                            <p className="text-xl font-[700]">{produkt.naziv}</p>
-                                            <div className="flex gap-2 items-center justify-center">
-                                                <p className="text-lg">{produkt.cijena.toFixed(2)}€</p>
-                                                {produkt.staraCijena && <p className="text-[#9098B1] line-through">{produkt.staraCijena?.toFixed(2)}€</p>}
-                                            </div>
+                                            <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineShopping /></p>
                                         </Link>
                                     </div>
+                                    <div className="w-56 h-56">
+                                        <img src={urlFor(produkt.image[0].asset._ref)} className="w-56 h-56 object-contain border-2 border-[#E8E8E8]" />
+                                    </div>
+                                    <p className="text-xl font-[700]">{produkt.naziv}</p>
+                                    <div className="flex gap-2 items-center justify-center">
+                                        <p className="text-lg">{produkt.cijena.toFixed(2)}€</p>
+                                        {produkt.staraCijena && <p className="text-[#9098B1] line-through">{produkt.staraCijena?.toFixed(2)}€</p>}
+                                    </div>
+                                </Link>
+                            </div>
                                 )
                             }
                             else return;

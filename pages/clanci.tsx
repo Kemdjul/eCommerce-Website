@@ -5,11 +5,19 @@ import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 import Nav from '../components/Nav';
 
+import { Poppins } from '@next/font/google';
+
 import { client } from '../lib/client';
+
+const poppins = Poppins({ 
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
+ });
 
 const clanci = ({ blogovi }) => {
   return (
-    <div>
+    <div className={poppins.className}>
         <Nav />
         <Banner text="NOVOSTI" smallText="POČETNA / NOVOSTI" />
         <ListaBlogova blogovi={blogovi} />
@@ -21,7 +29,7 @@ const clanci = ({ blogovi }) => {
 
 export const getServerSideProps = async () => {
     const blogoviQuery = `*[_type == "blogovi"]`;
-    const produkti = await client.fetch(blogoviQuery);
+    const blogovi = await client.fetch(blogoviQuery);
   
     return {
       props: {

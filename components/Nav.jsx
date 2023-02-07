@@ -26,7 +26,7 @@ const Nav = () => {
           <p className="max-sm:hidden">Besplatan trošak dostave iznad 70 eura</p>
 
           <div className="flex gap-4 items-center">
-            <p className="max-sm:hidden">0800 330 022</p>
+            <a href="tel:0800330022" className="max-sm:hidden">0800 330 022</a>
             <div className="w-[1px] h-6 bg-gray-400 max-sm:hidden md:items-center md:justify-between" />
             <p>Prijava / Registracija</p>
           </div>

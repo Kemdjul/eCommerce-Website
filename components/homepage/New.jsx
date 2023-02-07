@@ -16,35 +16,35 @@ const New = ({ produkti }) => {
         <div className="flex flex-col gap-4 justify-center items-center">
           <h3 className="text-4xl">NAŠI PROIZVODI</h3>
           <div className="h-1 w-40 bg-primary" />
-          <p className="text-lg text-[#454545]">Pogledajte našu cijelu paletu proizvoda.</p>
+          <p className="text-lg text-[#454545] text-center">Pogledajte našu cijelu paletu proizvoda.</p>
           
-          <ul className="md:flex max-md:grid max-md:grid-cols-6 items-center justify-center mt-6 text-xl max-md:gap-4 md:gap-3">
+          <ul className="md:flex max-md:grid max-md:grid-cols-1 items-center justify-center mt-6 max-md:text-2xl md:text-xl max-md:gap-4 md:gap-3">
             <button type="button" onClick={() => setKategorija('Akcija')}>
               <li className={kategorija == 'Akcija' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>AKCIJA</li>
             </button>
             
-            <div className="h-4 w-[1px] bg-gray-400" />
+            <div className="h-4 w-[1px] bg-gray-400 max-md:hidden" />
 
             <button type="button" onClick={() => setKategorija('Oxygen Optimal')}>
-              <li className={kategorija == 'Oxygen Optimal' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>OXYGEN <span className="max-md:hidden">OPTIMAL</span></li>
+              <li className={kategorija == 'Oxygen Optimal' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>OXYGEN OPTIMAL</li>
             </button>
 
-            <div className="h-4 w-[1px] bg-gray-400" />
+            <div className="h-4 w-[1px] bg-gray-400 max-md:hidden" />
 
             <button type="button" onClick={() => setKategorija('Dodaci prehrani')}>
-              <li className={kategorija == 'Dodaci prehrani' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>DODACI <span className="max-md:hidden">PREHRANI</span></li>
+              <li className={kategorija == 'Dodaci prehrani' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>DODACI PREHRANI</li>
             </button>
 
-            <div className="h-4 w-[1px] bg-gray-400" />
+            <div className="h-4 w-[1px] bg-gray-400 max-md:hidden" />
 
             <button type="button" onClick={() => setKategorija('Čajevi i tinkture')}>
-              <li className={kategorija == 'Čajevi i tinkture' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>ČAJEVI<span className="max-md:hidden"> I TINKTURE</span></li>
+              <li className={kategorija == 'Čajevi i tinkture' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>ČAJEVI I TINKTURE</li>
             </button>
 
-            <div className="h-4 w-[1px] bg-gray-400" />
+            <div className="h-4 w-[1px] bg-gray-400 max-md:hidden" />
 
             <button type="button" onClick={() => setKategorija('Gelovi i kreme')}>
-              <li className={kategorija == 'Gelovi i kreme' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>GELOVI<span className="max-md:hidden"> I KREME</span></li>
+              <li className={kategorija == 'Gelovi i kreme' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>GELOVI I KREME</li>
             </button>
           </ul>
         </div>

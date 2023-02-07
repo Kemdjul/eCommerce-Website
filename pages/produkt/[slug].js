@@ -115,7 +115,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                 <p></p>
               </div>
 
-              {produkt.staraCijena && <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijenaSPopustom ? produkt.cijenaSPopustom.toFixed(2) : produkt.cijena.toFixed(2)}€</p>}
+              <p className="text-[#C1C8CE] font-[400]">Cijena u zadnjih 30 dana: {produkt.staraCijena ? produkt.staraCijena.toFixed(2) : produkt.cijenaSPopustom ? produkt.cijenaSPopustom.toFixed(2) : produkt.cijena.toFixed(2)}€</p>
 
               <div className="flex w-full md:justify-between max-md:justify-between mt-6">
                 <div className="flex flex-col gap-1 font-[400]">

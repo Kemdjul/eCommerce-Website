@@ -58,7 +58,7 @@ const Trendy = ({ produkti }) => {
 
   return (
     <div>
-      <div className="w-full h-screen mt-20">
+      <div className="w-full mt-20">
         <div className="flex flex-col max-md:mx-12 gap-6 justify-center max-md:text-center items-center">
           <h3 className="text-4xl font-[500]">IZDVOJENI PROIZVODI</h3>
           <div className="h-1 w-48 bg-primary" />

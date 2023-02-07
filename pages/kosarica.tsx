@@ -7,6 +7,14 @@ import Placanje from '../components/Placanje';
 import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
 
+import { Poppins } from '@next/font/google';
+
+const poppins = Poppins({ 
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
+ });
+
 const kosarica = () => {
   const { cartItems, totalQuantities, qty, incQty, decQty, totalPrice, showPlacanje, setShowPlacanje } = useStateContext();
 
@@ -17,7 +25,7 @@ const kosarica = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8 text-[#22262A]">
+    <div className={`flex flex-col gap-8 text-[#22262A] ${poppins.className}`}>
         <Nav />
         {showPlacanje && <Placanje />}
         <Banner text="KOŠARICA" smallText="" />

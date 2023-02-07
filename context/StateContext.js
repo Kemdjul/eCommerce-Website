@@ -16,6 +16,7 @@ export const StateContext = ({ children }) => {
     const [showBurger, setShowBurger] = useState(false);
     const [sortirajPo, setSortirajPo] = useState();
     const [kategorija, setKategorija] = useState('');
+    const [traziValue, setTraziValue] = useState('');
 
     let foundProduct;
 
@@ -101,6 +102,8 @@ export const StateContext = ({ children }) => {
                 setSortirajPo,
                 kategorija,
                 setKategorija,
+                traziValue,
+                setTraziValue,
             }}
         >
             {children}
