@@ -1,6 +1,6 @@
 const mail = require('@sendgrid/mail');
 
-mail.setApiKey('process.env.SENGRID_API_KEY');
+mail.setApiKey('process.env.NEXT_PUBLIC_SENGRID_API_KEY');
 
 export default (req, res) => {
     const body = JSON.parse(req.body);
@@ -12,7 +12,7 @@ export default (req, res) => {
     `;
 
     const data = {
-        to: 'karlo.kufek@gmail.com',
+        to: 'kemalasanov25@gmail.com',
         from: 'prodaja@odaberizdravlje.hr',
         subject: 'Pozz',
         text: message,

@@ -89,7 +89,7 @@ const Placanje = () => {
             setShowNapustanje(true);
         }} />
         {showNapustanje && <Napustanje />}
-        {postupak == 1 && (<div className="md:w-[40rem] md:h-[30rem] max-md:w-screen max-md:h-screen flex flex-col md:gap-3 max-md:gap-4 max-md:py-2 md:justify-center items-center bg-white z-[102] md:rounded-lg">
+        {postupak == 1 && (<div className="md:w-[40rem] md:h-[30rem] max-md:w-screen max-md:h-screen md:px-4 flex flex-col md:gap-3 max-md:gap-4 max-md:py-2 md:justify-center items-center bg-white z-[102] md:rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">
