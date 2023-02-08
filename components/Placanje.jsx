@@ -84,12 +84,12 @@ const Placanje = () => {
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center z-[101] fixed">
-        <div className="absolute w-full h-screen bg-gray-600 opacity-40" />
-        <AiOutlineClose className="relative translate-x-[16rem] translate-y-16 text-2xl z-[103] text-primary opacity-60" onClick={() => {
+        <div className="absolute w-full h-screen bg-gray-600 opacity-40 max-md:hidden" />
+        <AiOutlineClose className="relative md:translate-x-[16rem] max-md:translate-x-40 translate-y-16 text-2xl z-[103] text-primary opacity-60" onClick={() => {
             setShowNapustanje(true);
         }} />
         {showNapustanje && <Napustanje />}
-        {postupak == 1 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-3 justify-center items-center bg-white z-[102] rounded-lg">
+        {postupak == 1 && (<div className="md:w-[40rem] md:h-[30rem] max-md:w-screen max-md:h-screen flex flex-col md:gap-3 max-md:gap-4 max-md:py-2 md:justify-center items-center bg-white z-[102] md:rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">
@@ -105,32 +105,32 @@ const Placanje = () => {
                 </div>
             </div>
             <div className="flex mt-2">
-                <form className="flex flex-col gap-4 items-center" onSubmit={(event) => handleSubmit(event)}>
-                    <div className="flex gap-[10%]">
-                        <div className="flex flex-col w-[45%] gap-6">
+                <form className="flex flex-col gap-2 items-center max-md:px-10" onSubmit={(event) => handleSubmit(event)}>
+                    <div className="flex max-md:flex-col max-md:w-full md:gap-[10%] max-md:gap-2">
+                        <div className="flex flex-col md:w-[45%] gap-2">
                             <input required={true} type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <input required={true} type="email" id="ime" name="email" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <input required={true} type="text" id="fime" name="fadresa" placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                         </div>
 
-                        <div className="flex flex-col w-[45%] gap-6">
+                        <div className="flex flex-col md:w-[45%] gap-2">
                             <input required={true} type="text" id="fprezime" name="fprezime" placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <input required={true} type="text" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <div className="flex justify-between">
-                                <input required={true} type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
-                                <input required={true} type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm w-[45%]" />
+                            <div className="flex max-md:flex-col max-md:w-full md:justify-between max-md:gap-2">
+                                <input required={true} type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
+                                <input required={true} type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
                             </div>
                         </div>
                     </div>
 
-                    <input type="text" id="fnapomena" name="fnapomena" placeholder="Napomena" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm text-center w-[60%] mt-2" />
-                    <div>
+                    <input type="text" id="fnapomena" name="fnapomena" placeholder="Napomena" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm text-center md:w-[60%] max-md:w-full md:mt-2" />
+                    <div className="flex items-center gap-4">
                         <input required={true} type="checkbox" id="fuvjeti" name="fuvjeti" value="Uvjeti" />
-                        <label for="fuvjeti"> Pročitao/la sam i slažem se s uvjetima korištenja i odredbama web-stranice. </label>
+                        <label for="fuvjeti" className="text-sm"> Pročitao/la sam i slažem se s uvjetima korištenja i odredbama web-stranice. </label>
                     </div>
-                    <div>
+                    <div className="flex items-center gap-4">
                         <input type="checkbox" id="fnewsletter" name="fnewsletter" value="Newsletter" />
-                        <label for="fnewsletter"> Pretplati me na naš newsletter.</label>
+                        <label for="fnewsletter" className="text-sm"> Pretplati me na naš newsletter.</label>
                     </div>
 
                     <input type="submit" value="Opcije plaćanja" className="px-12 py-2 text-lg text-white bg-primary rounded-lg" />
@@ -138,7 +138,7 @@ const Placanje = () => {
             </div>
         </div>)}
 
-        {postupak == 2 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102] rounded-lg">
+        {postupak == 2 && (<div className="md:w-[40rem] md:h-[30rem] max-md:w-screen max-md:h-screen flex flex-col md:gap-3 max-md:gap-4 max-md:py-2 md:justify-center items-center bg-white z-[102] md:rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">
@@ -184,7 +184,7 @@ const Placanje = () => {
             <button onClick={() => handleSecond()} type="button" className="px-12 py-2 text-lg text-white bg-primary rounded-lg">Plati</button>
         </div>)}
 
-        {postupak == 3 && (<div className="w-[40rem] h-[30rem] flex flex-col gap-6 justify-center items-center bg-white z-[102] rounded-lg">
+        {postupak == 3 && (<div className="md:w-[40rem] md:h-[30rem] max-md:w-screen max-md:h-screen flex flex-col md:gap-3 max-md:gap-4 max-md:py-40 md:justify-center items-center bg-white z-[102] md:rounded-lg">
             <h3 className="font-[600] text-3xl text-primary">Podaci za dostavu</h3>
             <div className="flex items-center text-white">
                 <div className="rounded-full bg-primary w-8 h-8 flex justify-center items-center">

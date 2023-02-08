@@ -7,13 +7,13 @@ import { FaBullhorn } from 'react-icons/fa';
 
 const KontaktForma = () => {
   return (
-    <div className="flex px-40 pb-12 pt-16 gap-12">
-        <div className="flex flex-col gap-4 w-[68rem]">
+    <div className="flex max-md:flex-col md:px-40 max-md:px-6 pb-12 pt-16 gap-12">
+        <div className="flex flex-col gap-4 md:w-[68rem]">
             <h3 className="text-4xl font-[700]">Pošaljite nam <span className="text-primary">poruku</span></h3>
             <div className="h-1 w-28 bg-primary" />
             <p className="text-[#666666] font-[400]">Za sve dodatne infomacije pozovite nas na naš besplatni broj telefona 0800 330 022.</p>
             <form className="flex flex-col gap-8 items-start">
-                <div className="grid grid-cols-2 gap-8 w-full">
+                <div className="grid md:grid-cols-2 gap-8 w-full">
                     <div className="flex flex-col gap-1">
                         <label className="text-[#666666] font-[400]">Ime *</label>
                         <input type="text" className="border-2 border-gray-400 focus:outline-none px-2 py-2" />
@@ -40,7 +40,7 @@ const KontaktForma = () => {
             <p className="text-[#666666] font-[400]">Napomena: odgovor slijedi najkasnije u roku od 2 radna dana.</p>
         </div>
 
-        <div className="flex flex-col w-[30rem] gap-4">
+        <div className="flex flex-col md:w-[30rem] gap-4">
             <h4 className="text-primary text-2xl font-[700]">Kontakt informacije</h4>
             
             <div className="flex items-center gap-4">

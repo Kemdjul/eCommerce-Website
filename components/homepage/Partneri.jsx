@@ -11,7 +11,7 @@ const Partneri = () => {
         <h3 className="text-4xl">PARTNERI</h3>
         <div className="w-40 h-1 bg-primary" />
 
-        <div className="flex max-md:px-8 justify-between md:mt-8 w-full items-center justify-center">
+        <div className="flex max-md:px-8 justify-between md:mt-8 w-full items-center">
           <Image className="max-md:w-20 md:w-32" src={Partner1} />
           <Image className="max-md:w-20 md:w-32" src={Partner2} />
           <Image className="max-md:w-20 md:w-32" src={Partner3} />

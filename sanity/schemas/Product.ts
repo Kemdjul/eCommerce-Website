@@ -99,5 +99,10 @@ export default {
         title: 'Izdvojiti',
         type: 'boolean',
       },
+      {
+        name: 'zaliha',
+        title: 'Na zalihi',
+        type: 'boolean',
+      },
     ]
   }

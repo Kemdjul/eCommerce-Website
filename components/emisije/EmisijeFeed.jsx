@@ -157,7 +157,7 @@ const EmisijeFeed = () => {
                     <Image src={em.image} className="h-full w-full object-contain" />
 
                     <p className="text-xl text-center font-[600]">{em.naziv}</p>
-                    <Link href={em.url} target="_blank" className="bg-primary px-8 py-2">
+                    <Link href={em.url} target="_blank" className="bg-primary px-8 py-2 text-white">
                         <p>CIJELA EMISIJA...</p>
                     </Link>
                 </div>

@@ -29,21 +29,21 @@ const kosarica = () => {
         <Nav />
         {showPlacanje && <Placanje />}
         <Banner text="KOŠARICA" smallText="" />
-        <div className="h-12 mx-72 px-8 border-b-2 border-[#F6F7F8] flex items-center justify-between ">
-          <h5 className="text-[#22262A] text-xl">PROIZVODI</h5>
-          <div className="flex gap-14">
-            <h5 className="text-[#22262A] text-xl">CIJENA</h5>
-            <h5 className="text-[#22262A] text-xl">KOLIČINA</h5>
-            <h5 className="text-[#22262A] text-xl">UKUPNO</h5>
+        <div className="h-12 md:mx-72 md:px-8 border-b-2 border-[#F6F7F8] flex items-center justify-between ">
+          <h5 className="text-[#22262A] md:text-xl max-md:text-lg">PROIZVODI</h5>
+          <div className="flex md:gap-14 max-md:gap-2">
+            <h5 className="text-[#22262A] md:text-xl max-md:text-lg max-md:hidden">CIJENA</h5>
+            <h5 className="text-[#22262A] md:text-xl max-md:text-lg max-md:hidden">KOLIČINA</h5>
+            <h5 className="text-[#22262A] md:text-xl max-md:text-lg max-md:hidden">UKUPNO</h5>
           </div>
         </div>
-        <div className="w-full min-h-96 px-80">
+        <div className="w-full min-h-96 md:px-80">
           {cartItems?.map((item) => (
             <Produkt produkt={item} />
           ))}
         </div>
 
-        <div className="px-80 flex justify-between">
+        <div className="md:px-80 flex max-md:flex-col max-md:items-center max-md:gap-4 justify-between">
             <div className="flex">
               <input placeholder="Kupon kod" className="w-56 h-12 rounded-l-md px-2 border-2 focus:outline-none border-[#F1F3F4]" />
               <input type="submit" value="Iskoristi" className="w-24 h-12 flex bg-primary text-white rounded-r-md cursor-pointer" />

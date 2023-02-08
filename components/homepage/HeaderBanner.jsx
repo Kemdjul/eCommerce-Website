@@ -3,7 +3,6 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from "keen-slider/react";
 import { urlFor } from '../../lib/client';
 import { useStateContext } from '../../context/StateContext';
-
 import Link from 'next/link';
 
 const AdaptiveHeight = (slider) => {
@@ -63,12 +62,10 @@ const HeaderBanner = ({ banneri }) => {
               <h5 className="text-primary md:text-2xl font-[600] z-[1]">{banner.smallText1}</h5>
               <h1 className="md:text-6xl text-5xl font-[600] z-[1]">{banner.bigText}</h1>
               <h5 className="text-[#454545] font-[400] z-[1] opacity-0 md:opacity-100">{banner.smallText2}</h5>
-              <Link href="/produkt/ultraprost" className="z-[1]">
-                <button 
-                  type="button"
-                  className="z-[1] px-4 py-2 bg-primary w-48 mt-12 text-white">
-                    {banner.buttonText}
-                </button>
+              <Link 
+                href='/produkt/ultraprost'
+                className="z-[1] px-4 py-2 bg-primary w-48 mt-12 text-white">
+                  {banner.buttonText}
               </Link>
             </div>
           </div>

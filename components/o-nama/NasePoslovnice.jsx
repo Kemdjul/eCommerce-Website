@@ -5,10 +5,10 @@ import NasePoslovniceSlika from '../../assets/o-nama/NasePoslovnice.png';
 
 const NasePoslovnice = () => {
   return (
-    <div className="w-full flex flex-col gap-4 px-80 py-12 justify-center items-center">
+    <div className="w-full flex flex-col gap-4 md:px-80 max-md:px-6 py-12 justify-center items-center">
         <h3 className="text-3xl">NAŠE POSLOVNICE</h3>
         <div className="h-1 w-32 bg-primary" />
-        <div className="flex gap-32 pt-8">
+        <div className="flex max-md:flex-col gap-32 pt-8">
             <Image src={NasePoslovniceSlika} alt="SLika poslovnice.png" />
 
             <div className="flex flex-col gap-1 justify-center items-center">

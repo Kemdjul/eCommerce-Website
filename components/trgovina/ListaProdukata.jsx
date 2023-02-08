@@ -11,7 +11,6 @@ import { useStateContext } from '../../context/StateContext';
 
 const ListaProdukata = ({ produkti }) => {
     const [value, setValue] = useState([0, 300]);
-    const [totalCount, setTotalCount] = useState(0);
     const [productsShown, setProductsShown] = useState(0);
     const [page, setPage] = useState(1);
     const [sortirajPo, setSortirajPo] = useState();
@@ -20,10 +19,6 @@ const ListaProdukata = ({ produkti }) => {
     const [showOptions2, setShowOptions2] = useState(false);
 
     const { kategorija, setKategorija, trazi, traziValue, setTraziValue } = useStateContext();
-
-    useEffect(() => {
-        produkti.map(() => setTotalCount((prevCount) => prevCount + 1));
-    }, []);
 
     const handleKategorija = (kat) => {
         if (kat == kategorija) {
@@ -67,19 +62,19 @@ const ListaProdukata = ({ produkti }) => {
                     <h4 className="text-[#22262A] text-2xl text-center">Kategorije</h4>
                     <button type="button" onClick={() => handleKategorija('Oxygen Optimal')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Oxygen Optimal' ? 'text-primary' : 'text-[#262626]'}>Oxygen Optimal</p>
-                        <p className={kategorija == 'Oxygen Optimal' ? 'text-primary' : 'text-[#262626] opacity-40'}>19</p>
+                        <p className={kategorija == 'Oxygen Optimal' ? 'text-primary' : 'text-[#262626] opacity-40'}>21</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Dodaci prehrani')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Dodaci prehrani' ? 'text-primary' : 'text-[#262626]'}>Dodaci prehrani</p>
-                        <p className={kategorija == 'Dodaci prehrani' ? 'text-primary' : 'text-[#262626] opacity-40'}>11</p>
+                        <p className={kategorija == 'Dodaci prehrani' ? 'text-primary' : 'text-[#262626] opacity-40'}>12</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Tinkture i čajevi')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Tinkture i čajevi' ? 'text-primary' : 'text-[#262626]'}>Tinkture i čajevi</p>
-                        <p className={kategorija == 'Tinkture i čajevi' ? 'text-primary' : 'text-[#262626] opacity-40'}>0</p>
+                        <p className={kategorija == 'Tinkture i čajevi' ? 'text-primary' : 'text-[#262626] opacity-40'}>1</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Gelovi i kreme')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626]'}>Gelovi i kreme</p>
-                        <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626] opacity-40'}>5</p>
+                        <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626] opacity-40'}>14</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Biljna ljekarna')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626]'}>Biljna ljekarna</p>
@@ -87,11 +82,11 @@ const ListaProdukata = ({ produkti }) => {
                     </button>
                     <button type="button" onClick={() => handleKategorija('Fit Program')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Fit Program' ? 'text-primary' : 'text-[#262626]'}>Fit programi</p>
-                        <p className={kategorija == 'Fit Program' ? 'text-primary' : 'text-[#262626] opacity-40'}>0</p>
+                        <p className={kategorija == 'Fit Program' ? 'text-primary' : 'text-[#262626] opacity-40'}>9</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Zaštita i dezinfekcija')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Zaštita i dezinfekcija' ? 'text-primary' : 'text-[#262626]'}>Zaštita i dezinfekcija</p>
-                        <p className={kategorija == 'Zaštita i dezinfekcija' ? 'text-primary' : 'text-[#262626] opacity-40'}>0</p>
+                        <p className={kategorija == 'Zaštita i dezinfekcija' ? 'text-primary' : 'text-[#262626] opacity-40'}>5</p>
                     </button>
                 </div>
 
@@ -112,14 +107,8 @@ const ListaProdukata = ({ produkti }) => {
 
             <div className="w-full flex flex-col md:pl-8 max-md:px-4">
                 <div className="w-full h-12 mb-8 flex justify-between items-center px-4 bg-[#E8E8E8] max-md:hidden">
-                    <p>9 od {totalCount}</p>
-
-                    <div className="flex items-center gap-2">
-                        <p>{traziValue}</p>
-                        {traziValue && <AiOutlineClose onClick={() => setTraziValue('')} className="text-red-600 cursor-pointer" />}
-                    </div>
-
-                    <div className="flex max-md:hidden gap-4">
+                    <p className="hidden">9 od 53</p>
+                    <div className="flex max gap-4">
                         <div onClick={() => setShowOptions1(!showOptions1)} className={showOptions1 ? "flex w-56 h-18 gap-2 translate-y-3 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "flex w-56 h-9 gap-2 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>
                             <p>Sortiraj po:</p>
 
@@ -134,7 +123,7 @@ const ListaProdukata = ({ produkti }) => {
                             </div>
                         </div>
 
-                        <div onClick={() => setShowOptions2(!showOptions2)} className={showOptions2 ? "flex gap-2 translate-y-3 w-40 h-18 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "flex gap-2 w-40 h-9 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>
+                        <div onClick={() => setShowOptions2(!showOptions2)} className={showOptions2 ? "hidden gap-2 translate-y-3 w-40 h-18 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]" : "hidden gap-2 w-40 h-9 border-2 border-[#D0D0D0] rounded-lg px-2 py-1 bg-[#E8E8E8]"}>
                             <p>Prikaži:</p>
 
                             <div className="flex flex-col">

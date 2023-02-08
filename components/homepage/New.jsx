@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { urlFor } from '../../lib/client';
-
-import Trendy_1 from '../../assets/trendy-1.jpg';
 
 const New = ({ produkti }) => {
   const [kategorija, setKategorija] = useState('Akcija');
@@ -18,7 +15,7 @@ const New = ({ produkti }) => {
           <div className="h-1 w-40 bg-primary" />
           <p className="text-lg text-[#454545] text-center">Pogledajte našu cijelu paletu proizvoda.</p>
           
-          <ul className="md:flex max-md:grid max-md:grid-cols-1 items-center justify-center mt-6 max-md:text-2xl md:text-xl max-md:gap-4 md:gap-3">
+          <ul className="md:flex max-md:grid max-md:grid-cols-3 items-center justify-center mt-6 text-xl max-md:gap-4 md:gap-3">
             <button type="button" onClick={() => setKategorija('Akcija')}>
               <li className={kategorija == 'Akcija' ? `text-primary border-b-2 border-primary` : `text-gray-600`}>AKCIJA</li>
             </button>
@@ -53,7 +50,7 @@ const New = ({ produkti }) => {
         {produkti?.map((produkt) => 
           {
             if (count < 8)
-              if (produkt.kategorija.find((kat) => kat == kategorija)) {
+              if (produkt.kategorija?.find((kat) => kat == kategorija)) {
                 count++;
                 return (
                   <div className="w-full h-full pt-8 flex flex-col justify-top items-center">

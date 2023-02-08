@@ -68,7 +68,7 @@ const Nav = () => {
             <button type="button" onClick={() => setShowCart(true)}>
               <AiOutlineShoppingCart className="m-2 text-3xl hover:text-primary transition-all cursor-pointer"/>
             </button>
-            <div className="w-4 h-4 absolute right-32 top-16 justify-center items-center flex rounded-full bg-primary">
+            <div className="w-4 h-4 absolute md:right-32 max-md:right-20 top-16 justify-center items-center flex rounded-full bg-primary">
               <p className="text-xs text-white">{totalQuantities}</p>
             </div>
           </div>

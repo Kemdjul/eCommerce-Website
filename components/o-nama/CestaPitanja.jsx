@@ -13,10 +13,10 @@ const CestaPitanja = () => {
     const [open8, setOpen8] = useState(false);
 
   return (
-    <div className="w-full flex flex-col gap-4 items-center px-20 py-12">
+    <div className="w-full flex flex-col md:gap-4 items-center md:px-20 max-md:px-6 py-12">
         <h3 className="text-3xl">ČESTA PITANJA</h3>
         <div className="h-1 w-36 bg-primary" />
-        <div className="w-full grid grid-cols-2 gap-x-32 px">
+        <div className="w-full grid md:grid-cols-2 gap-x-32 px">
             <div className={open1 ? "flex flex-col" : "flex flex-col pb-12"}>
                 <div className="flex gap-4 w-full items-center px-4 py-4 bg-[#D6D6D6]">
                     <AiOutlinePlusSquare onClick={() => setOpen1(true)} className={open1 ? "hidden" : "text-primary text-2xl cursor-pointer"} />

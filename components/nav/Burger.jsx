@@ -18,10 +18,10 @@ const Burger = () => {
             <Link onClick={() => setShowBurger(false)} href="/emisije">
                 <li>Emisije</li>
             </Link>
-            <Link onClick={() => setShowBurger(false)} href="/novosti">
+            <Link onClick={() => setShowBurger(false)} href="/clanci">
                 <li>Novosti</li>
             </Link>
-            <Link onClick={() => setShowBurger(false)} href="/o-nama">
+            <Link onClick={() => setShowBurger(false)} href="/o_nama">
                 <li>O nama</li>
             </Link>
             <Link onClick={() => setShowBurger(false)} href="/kontakt">

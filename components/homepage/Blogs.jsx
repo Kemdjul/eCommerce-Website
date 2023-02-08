@@ -8,12 +8,12 @@ const Blogs = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <h3 className="text-4xl">NOVOSTI</h3>
 
-      <div className="w-full h-[34.75rem] px-32">
-        <div className="w-[30%] h-full flex flex-col gap-4 items-center justify-center text-center">
-          <Image src={BlogImage} alt="Blog image" />
+      <div className="w-full h-[34.75rem] md:px-32">
+        <div className="md:w-[30%] max-md:w-full h-full flex flex-col gap-4 items-center justify-center text-center">
+          <Image src={BlogImage} alt="Blog image" className="max-md:w-full" />
           <p className="text-xs text-primary">Datum, 2023</p>
           <h5 className="text-2xl">DIJABETEČKE KOMPILACIJE</h5>
-          <p className="font-[400] text-[#828181]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu....</p>
+          <p className="font-[400] text-[#828181] max-md:hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu....</p>
           <button type="button" className="px-4 py-2 bg-primary text-white">READ MORE</button>
         </div>
       </div>
