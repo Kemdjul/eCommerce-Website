@@ -28,7 +28,7 @@ const Placanje = () => {
             formData[field.name] = field.value;
         });
 
-        fetch('/api/mail', {
+        fetch('/api/email', {
             method: 'post',
             body: JSON.stringify(formData),
         });

@@ -80,9 +80,9 @@ const ListaProdukata = ({ produkti }) => {
                         <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626]'}>Biljna ljekarna</p>
                         <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626] opacity-40'}>5</p>
                     </button>
-                    <button type="button" onClick={() => handleKategorija('Fit Program')} className="flex w-full justify-between font-[400]">
-                        <p className={kategorija == 'Fit Program' ? 'text-primary' : 'text-[#262626]'}>Fit programi</p>
-                        <p className={kategorija == 'Fit Program' ? 'text-primary' : 'text-[#262626] opacity-40'}>9</p>
+                    <button type="button" onClick={() => handleKategorija('Fit program')} className="flex w-full justify-between font-[400]">
+                        <p className={kategorija == 'Fit program' ? 'text-primary' : 'text-[#262626]'}>Fit programi</p>
+                        <p className={kategorija == 'Fit program' ? 'text-primary' : 'text-[#262626] opacity-40'}>9</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Zaštita i dezinfekcija')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Zaštita i dezinfekcija' ? 'text-primary' : 'text-[#262626]'}>Zaštita i dezinfekcija</p>
