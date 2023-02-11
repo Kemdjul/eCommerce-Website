@@ -198,7 +198,7 @@ const ProductDetails = ({ produkt, produkti }) => {
             </div>
           </div>
 
-          <div className="md:w-full max-md:w-screen max-md:pt-16 flex flex-col md:gap-8 justify-center items-center">
+          <div className="md:w-full max-md:w-screen max-md:pt-16 md:mt-16 flex flex-col md:gap-8 justify-center items-center">
             <h3 className="md:text-4xl max-md:text-3xl">POVEZANI PROIZVODI</h3>
 
             <div ref={sliderRef} className="flex md:w-[80rem] max-md:w-screen max-md:overflow-hidden keen-slider">
@@ -212,7 +212,7 @@ const ProductDetails = ({ produkt, produkti }) => {
 
                 <div className="py-3 flex flex-col items-center">
                   <Link href={`${produkt.slug.current}`}>
-                    <p className="md:text-3xl max-md:text-xl text-center">{slicniProdukt.naziv}</p>
+                    <p className="md:text-2xl max-md:text-xl text-center">{slicniProdukt.naziv}</p>
                   </Link>
                   </div>
               </div>
@@ -220,11 +220,11 @@ const ProductDetails = ({ produkt, produkti }) => {
               </div>
           </div>
           
-          <div className="mt-10 w-full">
+          <div className="w-full">
             <CallToAction />
           </div>
           
-          <div className="w-screen mt-32">
+          <div className="w-screen">
             <Footer />
           </div>
         </div>

@@ -11,35 +11,27 @@ import { FaRegMoneyBillAlt } from 'react-icons/fa';
 import { client } from '../lib/client';
 
 const Placanje = () => {
+    const [values, setValues] = useState({
+        ime: "",
+        prezime: "",
+        email: "",
+        brojTel: "",
+        adresa: "",
+        postBroj: "",
+        grad: "",
+        napomena: "",
+    });
+
+    const { ime, prezime, email, brojTel, adresa, postBroj, grad, napomena } = values;
     const [opcijaPlacanja, setOpcijaPlacanja] = useState(0);
-    const [imePrezime, setImePrezime] = useState('');
-    const [email, setEmail] = useState('');
-    const [brojTel, setBrojTel] = useState('');
-    const [adresa, setAdresa] = useState('');
-    const [napomena, setNapomena] = useState('');
     const { postupak, setPostupak, cartItems, setShowPlacanje, showNapustanje, setShowNapustanje } = useStateContext();
+
+    const handleChange = (e) => {
+        setValues({...values, [e.target.name]: e.target.value});
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const formData = {};
-        Array.from(e.currentTarget.elements).forEach(field => {
-            if ( !field.name ) return;
-            formData[field.name] = field.value;
-        });
-
-        fetch('/api/email', {
-            method: 'post',
-            body: JSON.stringify(formData),
-        });
-
-        console.log(formData);
-
-        setImePrezime(e.target.fime.value + ' ' + event.target.fprezime.value);
-        setEmail(e.target.email.value);
-        setBrojTel(e.target.fbroj.value);
-        setAdresa(e.target.fadresa.value + ' ' + e.target.fgrad.value + ' ' + e.target.fpostbroj.value);
-        setNapomena(e.target.fnapomena.value);
         setPostupak(2);
     }
 
@@ -62,18 +54,31 @@ const Placanje = () => {
 
     const cartItemsTransformed = transformCartItems();
 
-    let item = [{
+    let item = {
         _type: 'narudzbe',
-        imePrezime: imePrezime,
+        imePrezime: ime + ' ' + prezime,
         proizvodi: cartItemsTransformed,
         email: email,
         brojTel: brojTel,
-        adresa: adresa,
+        adresa: adresa + ' ' + grad + ' ' + postBroj,
         napomena: napomena,
-      }];
+      };
 
     const handleSecond = () => {
-        client.create(item[0]);
+        
+
+        try {
+            fetch('/api/email', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/JSON',
+                },
+                body: JSON.stringify(item),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+
         setPostupak(3);
     };
 
@@ -108,22 +113,22 @@ const Placanje = () => {
                 <form className="flex flex-col gap-2 items-center max-md:px-10" onSubmit={(event) => handleSubmit(event)}>
                     <div className="flex max-md:flex-col max-md:w-full md:gap-[10%] max-md:gap-2">
                         <div className="flex flex-col md:w-[45%] gap-2">
-                            <input required={true} type="text" id="fime" name="fime" placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input required={true} type="email" id="ime" name="email" placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input required={true} type="text" id="fime" name="fadresa" placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="ime" name="ime" value={ime} onChange={handleChange} placeholder="Ime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="email" id="email" name="email" value={email} onChange={handleChange} placeholder="Email" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="adresa" name="adresa" value={adresa} onChange={handleChange} placeholder="Adresa" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                         </div>
 
                         <div className="flex flex-col md:w-[45%] gap-2">
-                            <input required={true} type="text" id="fprezime" name="fprezime" placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
-                            <input required={true} type="text" id="fbroj" name="fbroj" placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="prezime" name="prezime" value={prezime} onChange={handleChange} placeholder="Prezime" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
+                            <input required={true} type="text" id="brojTel" name="brojTel" value={brojTel} onChange={handleChange} placeholder="Broj telefona" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm" />
                             <div className="flex max-md:flex-col max-md:w-full md:justify-between max-md:gap-2">
-                                <input required={true} type="text" id="fgrad" name="fgrad" placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
-                                <input required={true} type="text" id="fpostbroj" name="fpostbroj" placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
+                                <input required={true} type="text" id="grad" name="grad" value={grad} onChange={handleChange} placeholder="Grad" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
+                                <input required={true} type="text" id="postBroj" name="postBroj" value={postBroj} onChange={handleChange} placeholder="Poštanski broj" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm md:w-[45%]" />
                             </div>
                         </div>
                     </div>
 
-                    <input type="text" id="fnapomena" name="fnapomena" placeholder="Napomena" className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm text-center md:w-[60%] max-md:w-full md:mt-2" />
+                    <input type="text" id="napomena" name="napomena" placeholder="Napomena" value={napomena} onChange={handleChange} className="focus:outline-none bg-[#DFDEDE] px-2 py-1 text-sm text-center md:w-[60%] max-md:w-full md:mt-2" />
                     <div className="flex items-center gap-4">
                         <input required={true} type="checkbox" id="fuvjeti" name="fuvjeti" value="Uvjeti" />
                         <label for="fuvjeti" className="text-sm"> Pročitao/la sam i slažem se s uvjetima korištenja i odredbama web-stranice. </label>

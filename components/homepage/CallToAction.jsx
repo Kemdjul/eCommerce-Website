@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Logo from '../../assets/logo.png';
 
@@ -20,11 +21,10 @@ const CallToAction = () => {
         <div className="flex flex-col gap-4 max-md:hidden">
             <h5 className="text-xl">KATEGORIJE</h5>
             <div className="flex flex-col gap-2 font-[400] text-[#454545]">
-                <p>Trgovina</p>
-                <p>Kontakt</p>
-                <p>Praćenje pošiljke</p>
-                <p>Povrati</p>
-                <p>Terms & Conditions</p>
+                <Link href="/trgovina">Trgovina</Link>
+                <Link href="/kontakt">Kontakt</Link>
+                <Link href="/o_nama">O nama</Link>
+                <Link href="pravila-i-privatnosti">Terms & Conditions</Link>
             </div>
         </div>
     </div>

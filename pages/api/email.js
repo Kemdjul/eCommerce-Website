@@ -1,21 +1,20 @@
 const mail = require('@sendgrid/mail');
 
-mail.setApiKey(`${process.env.NEXT_PUBLIC_SENGRID_API_KEY}`);
+mail.setApiKey('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');
 
-export default (req, res) => {
-    const body = JSON.parse(req.body);
+export default async (req, res) => {
+    const { imePrezime, email, brojTel, adresa, napomena, proizvodi } = req.body;
 
     const data = {
-        to: 'kemalasanov25@gmail.com',
+        to: email,
         from: 'prodaja@odaberizdravlje.hr',
-        subject: 'Pozz',
-        text: 'Pozdrav brate',
-        html: '<p>Pozdrav brate</p>'
+        subject: 'Prodaja',
+        html: '<p>Dobio si mail sa stranice :) Cujemo se navecer</p>'
     }
 
-    mail.send(data)
-        .then(() => console.log('Email sent'))
-        .catch((error) => console.error(error))
+    await mail.send(data)
 
-    res.status('200').json({ status: 'Ok' })
+
+
+    res.json({success: true});
 }

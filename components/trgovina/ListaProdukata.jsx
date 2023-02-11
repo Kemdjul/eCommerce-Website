@@ -5,7 +5,8 @@ import Dropdown from './Dropdown';
 
 import Box from '@mui/material/Box';
 import { Slider } from '@mui/material';
-import { AiOutlineHeart, AiOutlineShopping, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineShopping } from 'react-icons/ai';
+import { IoIosClose } from 'react-icons/io';
 
 import { useStateContext } from '../../context/StateContext';
 
@@ -74,11 +75,11 @@ const ListaProdukata = ({ produkti }) => {
                     </button>
                     <button type="button" onClick={() => handleKategorija('Gelovi i kreme')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626]'}>Gelovi i kreme</p>
-                        <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626] opacity-40'}>25</p>
+                        <p className={kategorija == 'Gelovi i kreme' ? 'text-primary' : 'text-[#262626] opacity-40'}>5</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Biljna ljekarna')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626]'}>Biljna ljekarna</p>
-                        <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626] opacity-40'}>5</p>
+                        <p className={kategorija == 'Biljna ljekarna' ? 'text-primary' : 'text-[#262626] opacity-40'}>25</p>
                     </button>
                     <button type="button" onClick={() => handleKategorija('Fit program')} className="flex w-full justify-between font-[400]">
                         <p className={kategorija == 'Fit program' ? 'text-primary' : 'text-[#262626]'}>Fit programi</p>
@@ -106,6 +107,11 @@ const ListaProdukata = ({ produkti }) => {
             </div>
 
             <div className="w-full flex flex-col md:pl-8 max-md:px-4">
+                {traziValue && (<div className="flex items-center px-4 py-2 text-xl">
+                    <p>{traziValue.toUpperCase()}</p>
+                    <IoIosClose onClick={() => setTraziValue('')} className="text-red-600 text-3xl cursor-pointer" />
+                </div>)}
+                
                 <div className="w-full h-12 mb-8 flex justify-between items-center px-4 bg-[#E8E8E8] max-md:hidden">
                     <p className="hidden">9 od 53</p>
                     <div className="flex max gap-4">
