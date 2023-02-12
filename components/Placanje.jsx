@@ -24,7 +24,7 @@ const Placanje = () => {
 
     const { ime, prezime, email, brojTel, adresa, postBroj, grad, napomena } = values;
     const [opcijaPlacanja, setOpcijaPlacanja] = useState(0);
-    const { postupak, setPostupak, cartItems, setShowPlacanje, showNapustanje, setShowNapustanje } = useStateContext();
+    const { postupak, setPostupak, cartItems, setShowPlacanje, showNapustanje, setShowNapustanje, brojNarudzbe, setBrojNarudzbe } = useStateContext();
 
     const handleChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value});
@@ -55,6 +55,7 @@ const Placanje = () => {
     const cartItemsTransformed = transformCartItems();
 
     let item = {
+        _id: brojNarudzbe,
         _type: 'narudzbe',
         imePrezime: ime + ' ' + prezime,
         proizvodi: cartItemsTransformed,
@@ -79,6 +80,8 @@ const Placanje = () => {
             console.log(err);
         }
 
+        client.create(item);
+        setBrojNarudzbe(brojNarudzbe + 1);
         setPostupak(3);
     };
 

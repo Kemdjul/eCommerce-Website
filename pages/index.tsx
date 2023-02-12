@@ -24,7 +24,7 @@ const poppins = Poppins({
   subsets: ['latin'],
  });
 
-const Home = ({ banneri, produkti }) => {
+const Home = ({ banneri, produkti, blogovi }) => {
   return (
     <>
       <Head>
@@ -43,7 +43,7 @@ const Home = ({ banneri, produkti }) => {
         <Kategorije />
         <New produkti = {produkti} />
         <Vita />
-        <Blogs />
+        <Blogs blogovi={blogovi} />
         <CallToAction />
         <Footer />
       </main>
@@ -58,10 +58,14 @@ export const getServerSideProps = async () => {
   const produktiQuery = `*[_type == "produkt"]`;
   const produkti = await client.fetch(produktiQuery);
 
+  const blogoviQuery = `*[_type == "blogovi"]`;
+  const blogovi = await client.fetch(blogoviQuery);
+
   return {
     props: {
       banneri,
       produkti,
+      blogovi,
     },
   };
 }

@@ -103,6 +103,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                       <img src={urlFor(img.asset._ref)} className="w-20 h-20 mr-4 object-contain" onClick={() => setSlider(index)} />
                   )
                 }})}
+                {!produkt.zaliha && <p className="-translate-y-[25rem] max-md:-translate-x-28 md:-translate-x-32 bg-red-400 h-6 flex justify-center items-center text-gray-100 px-2 rounded-lg absolute">Nema na zalihi</p>}
               </div>
             </div>
 
@@ -159,27 +160,29 @@ const ProductDetails = ({ produkt, produkti }) => {
                 </div>
               </div>)}
 
-              <div className="w-full flex justify-between md:mt-28 max-md:mt-10">
-                <div className="flex">
-                  <button type="button" onClick={decQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
-                    <AiOutlineMinus className="text-primary" />
-                  </button>
+              <div className="w-full flex justify-between items-center max-md:gap-2 md:mt-28 max-md:mt-10">
+                {produkt.zaliha && <div className="flex md:gap-8 items-center max-md:gap-2">
+                  <div className="flex">
+                    <button type="button" onClick={decQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-l-lg">
+                      <AiOutlineMinus className="text-primary" />
+                    </button>
 
-                  <div className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8]">
-                    {qty}
+                    <div className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8]">
+                      {qty}
+                    </div>
+
+                    <button type="button" onClick={incQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-r-lg">
+                      <AiOutlinePlus className="text-primary" />
+                    </button>
                   </div>
 
-                  <button type="button" onClick={incQty} className="w-10 h-10 flex justify-center items-center bg-[#F6F7F8] rounded-r-lg">
-                    <AiOutlinePlus className="text-primary" />
+                  <button type="button" onClick={handleClick} className="px-4 py-2 gap-2 text-primary flex justify-around items-center bg-[#F6F7F8] rounded-lg">
+                    <AiOutlineShoppingCart />
+                    <p>Dodaj u košaricu</p>
                   </button>
-                </div>
+                </div>}
 
-                <button type="button" onClick={handleClick} className="px-4 py-2 gap-2 text-primary flex justify-around items-center bg-[#F6F7F8] rounded-lg">
-                  <AiOutlineShoppingCart />
-                  <p>Dodaj u košaricu</p>
-                </button>
-
-                <div className="w-8 h-8 text-primary flex justify-center items-center bg-[#F6F7F8] rounded-lg">
+                <div className="w-8 h-8 text-primary flex justify-center items-center bg-[#F6F7F8] rounded-lg cursor-pointer">
                   <AiOutlineHeart />
                 </div>
               </div>
