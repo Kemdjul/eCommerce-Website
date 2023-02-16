@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Head from 'next/head';
 import Nav from '../components/Nav';
 import Banner from '../components/Banner';
 import Produkt from '../components/kosarica/Produkt.jsx';
@@ -25,7 +26,15 @@ const kosarica = () => {
   }
 
   return (
-    <div className={`flex flex-col gap-8 text-[#22262A] ${poppins.className}`}>
+  <>
+    <Head>
+      <title>Košarica - Odaberi Zdravlje</title>
+      <meta name="description" content="Vaš izbor naših proizvoda." />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
+      <div className={`flex flex-col gap-8 text-[#22262A] ${poppins.className}`}>
         <Nav />
         {showPlacanje && <Placanje />}
         <Banner text="KOŠARICA" smallText="" />
@@ -38,7 +47,7 @@ const kosarica = () => {
           </div>
         </div>
         <div className="w-full min-h-96 md:px-80">
-          {cartItems?.map((item) => (
+          {cartItems?.map((item: any) => (
             <Produkt produkt={item} />
           ))}
         </div>
@@ -76,7 +85,8 @@ const kosarica = () => {
         </div>
         <CallToAction />
         <Footer />
-    </div>
+      </div>
+  </>
   )
 }
 

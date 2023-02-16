@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Banner from '../components/Banner';
 import ListaBlogova from '../components/clanci/ListaBlogova';
 import CallToAction from '../components/homepage/CallToAction';
@@ -15,15 +16,24 @@ const poppins = Poppins({
   subsets: ['latin'],
  });
 
-const clanci = ({ blogovi }) => {
+const clanci = ({ blogovi }: any) => {
   return (
-    <div className={poppins.className}>
+    <>
+      <Head>
+        <title>Članci - Odaberi Zdravlje</title>
+        <meta name="description" content="Educirajte se uz naše članke o čestim zdravstvenim tegobama u današnjem svijetu." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+    
+      <div className={poppins.className}>
         <Nav />
         <Banner text="NOVOSTI" smallText="POČETNA / NOVOSTI" />
         <ListaBlogova blogovi={blogovi} />
         <CallToAction />
         <Footer />
     </div>
+    </>
   )
 }
 

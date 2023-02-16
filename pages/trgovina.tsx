@@ -1,10 +1,9 @@
 import React from 'react';
-
+import Head from 'next/head';
 import { Poppins } from '@next/font/google';
 
 import Nav from '../components/Nav';
 import TrgovinaHeader from '../components/trgovina/TrgovinaHeader';
-import Navigacija from '../components/trgovina/Navigacija';
 import ListaProdukata from '../components/trgovina/ListaProdukata';
 import CallToAction from '../components/homepage/CallToAction';
 import Footer from '../components/homepage/Footer';
@@ -16,15 +15,24 @@ const poppins = Poppins({
   subsets: ['latin'],
  });
 
-const Trgovina = ({ produkti }) => {
+const Trgovina = ({ produkti }: any) => {
   return (
-    <div className={poppins.className}>
+    <>
+      <Head>
+        <title>Trgovina - Odaberi Zdravlje</title>
+        <meta name="description" content="Prolistajte kroz asortiman naših kvalitetnih proizvoda za sve vaše zdravstvene tegobe." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div className={poppins.className}>
         <Nav />
         <TrgovinaHeader />
         <ListaProdukata produkti={produkti} />
         <CallToAction />
         <Footer />
-    </div>
+      </div>
+    </>
   )
 }
 

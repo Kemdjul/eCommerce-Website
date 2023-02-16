@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Head from 'next/head';
 import { Poppins } from '@next/font/google';
 import Nav from '../components/Nav';
 import Banner from '../components/Banner';
@@ -15,13 +15,24 @@ const poppins = Poppins({
 
 const pravilaIPrivatnosti = () => {
   return (
-    <div className={`w-full min-h-screen flex flex-col ${poppins.className}`}>
+    <>
+      <Head>
+        <title>Pravila i privatnosti - Odaberi Zdravlje</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div className={`w-full min-h-screen flex flex-col ${poppins.className}`}>
         <Nav />
         <Banner text="OPĆI UVJETI I PRAVILA PRIVATNOSTI" smallText="POČETNA / OPĆI UVJETI I PRAVILA PRIVATNOSTI" />
         <OpciUvjeti />
         <CallToAction />
         <Footer />
-    </div>
+      </div>
+    </>
+
+    
   )
 }
 
