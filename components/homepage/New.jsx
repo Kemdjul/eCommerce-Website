@@ -53,7 +53,7 @@ const New = ({ produkti }) => {
               if (produkt.kategorija?.find((kat) => kat == kategorija)) {
                 count++;
                 return (
-                  <div className="w-full h-full pt-8 flex flex-col justify-top items-center">
+                  <div className="w-full h-full pt-8 flex flex-col justify-top items-center" key={produkt._id}>
                     <Link href={`produkt/${produkt.slug.current}`}>
                       <div className="md:w-[100%] max-md:w-72 h-80 bg-green-800 border-2 border-gray-200">
                         <img src={urlFor(produkt.image[0].asset._ref)} alt="Product image" className="w-full h-full object-cover" />

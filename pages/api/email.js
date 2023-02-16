@@ -36,8 +36,8 @@ export default async (req, res) => {
                         <th className="border-[1px] border-gray-400 h-full w-full px-2 py-1 text-center">Količina</th>
                         <th className="border-[1px] border-gray-400 h-full w-full px-2 py-1 text-center">Cijena</th>
                     </tr>
-                    ${proizvodi.map((proizvod) => (
-                        <tr className="flex justify-between">
+                    {proizvodi.map((proizvod) => (
+                    <tr className="flex justify-between" key={proizvod._id}>
                         <td className="border-[1px] border-gray-400 h-full w-full px-2 py-1">{proizvod.naziv} {proizvod.velicina ? proizvod.velicina : ''} {proizvod.boja ? proizvod.boja : ''}</td>
                         <td className="border-[1px] border-gray-400 h-full w-full px-2 py-1 text-center">{proizvod.quantity}</td>
                         <td className="border-[1px] border-gray-400 h-full w-full px-2 py-1 text-center">{proizvod.cijenaSPopustom ? proizvod.cijenaSPopustom : proizvod.cijena}€</td>

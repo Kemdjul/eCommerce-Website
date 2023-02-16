@@ -56,7 +56,7 @@ const HeaderBanner = ({ banneri }) => {
     <div className="w-full h-screen bg-slate-400 flex flex-col justify-center items-center">
       <div ref={bannerRef} className="mt-[8.5rem] w-full h-screen keen-slider">
         {banneri?.map((banner) => (
-          <div className="flex flex-col items-center justify-center keen-slider__slide">
+          <div className="flex flex-col items-center justify-center keen-slider__slide" key={banner._id}>
             <img src={urlFor(banner.image.asset._ref)} className="w-full h-screen absolute object-cover" />
             <div className="flex flex-col gap-4 ml-96 w-[35rem] justify-center">
               <h5 className="text-primary md:text-2xl font-[600] z-[1]">{banner.smallText1}</h5>

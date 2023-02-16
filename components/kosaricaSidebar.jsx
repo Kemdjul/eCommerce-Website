@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { urlFor } from '../lib/client';
 import { useStateContext } from '../context/StateContext';
 import Link from 'next/link';
@@ -7,12 +7,11 @@ import { motion } from 'framer-motion';
 
 import { AiOutlineClose, AiOutlineCloseCircle } from 'react-icons/ai';
 
-const kosaricaSidebar = () => {
-  const cartRef = useRef();
+const KosaricaSidebar = () => {
   const { totalPrice, totalQuantities, cartItems, setShowCart, onRemove } = useStateContext();
 
   return (
-    <div className="md:w-full max-md:w-screen h-screen flex z-[100] sticky" ref={cartRef}>
+    <div className="md:w-full max-md:w-screen h-screen flex z-[100] sticky">
         <div className="w-full absolute h-full bg-[#D9D9D9] opacity-50 max-md:hidden" onClick={() => setShowCart(false)}>
         </div>
 
@@ -69,4 +68,4 @@ const kosaricaSidebar = () => {
   )
 }
 
-export default kosaricaSidebar
+export default KosaricaSidebar

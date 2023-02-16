@@ -24,7 +24,7 @@ const poppins = Poppins({
   subsets: ['latin'],
  });
 
-const Home = ({ banneri, produkti, blogovi }) => {
+const Home = ({ banneri, produkti, blogovi }:any) => {
   return (
     <>
       <Head>

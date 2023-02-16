@@ -123,7 +123,7 @@ const ListaProdukata = ({ produkti }) => {
 
                                 <div className={showOptions1 ? "flex flex-col" : "hidden"}>
                                     {values.map((val) => {
-                                    if(val != sortirajPo) return (<p onClick={() => handleChangeSortiraj(val)}>{val}</p>);
+                                    if(val != sortirajPo) return (<p onClick={() => handleChangeSortiraj(val)} key={val}>{val}</p>);
                                     })}
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ const ListaProdukata = ({ produkti }) => {
 
                                 <div className={showOptions2 ? "flex flex-col cursor-pointer" : "hidden"}>
                                     {prikaziArray.map((prik) => {
-                                    if(prik != prikazi) return (<p onClick={() => handleChangePrikazi(prik)}>{prik}</p>);
+                                    if(prik != prikazi) return (<p onClick={() => handleChangePrikazi(prik)} key={prik}>{prik}</p>);
                                     })}
                                 </div>
                             </div>
@@ -150,7 +150,7 @@ const ListaProdukata = ({ produkti }) => {
                         if (traziValue) {
                             if (produkt.naziv.toUpperCase().includes(traziValue.toUpperCase())) {
                                 return (
-                                    <div className="flex flex-col gap-2 items-center">
+                                    <div className="flex flex-col gap-2 items-center" key={produkt._id}>
                                 <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
                                     <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
                                         <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>
@@ -170,14 +170,12 @@ const ListaProdukata = ({ produkti }) => {
                             </div>
                                 )
                             }
-
-                            else return;
                         }
 
                         if (kategorija) {
                             if (produkt.kategorija[0] == kategorija) {
                                 if (produkt.cijena > value[0] && produkt.cijena < value[1]) return (
-                                    <div className="flex flex-col gap-2 items-center">
+                                    <div className="flex flex-col gap-2 items-center" key={produkt._id}>
                                 <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
                                     <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
                                         <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>
@@ -197,11 +195,10 @@ const ListaProdukata = ({ produkti }) => {
                             </div>
                                 )
                             }
-                            else return;
                         }
 
                         if (produkt.cijena > value[0] && produkt.cijena < value[1]) return (
-                            <div className="flex flex-col gap-2 items-center">
+                            <div className="flex flex-col gap-2 items-center" key={produkt._id}>
                                 <Link href={`produkt/${produkt.slug.current}`} className="flex flex-col items-center">
                                     <div className="absolute w-56 h-56 pt-32 flex gap-4 justify-center items-center opacity-0 hover:opacity-100 transition translate-y-4 hover:translate-y-0">
                                         <p className="text-3xl text-black hover:text-primary transition flex items-center justify-center bg-[#E8E8E8] rounded-full w-12 h-12"><AiOutlineHeart /></p>

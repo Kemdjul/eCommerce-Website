@@ -16,7 +16,7 @@ const poppins = Poppins({
   subsets: ['latin'],
  });
 
-const kosarica = () => {
+const Kosarica = () => {
   const { cartItems, totalQuantities, qty, incQty, decQty, totalPrice, showPlacanje, setShowPlacanje } = useStateContext();
 
   const handleClick = () => {
@@ -48,7 +48,7 @@ const kosarica = () => {
         </div>
         <div className="w-full min-h-96 md:px-80">
           {cartItems?.map((item: any) => (
-            <Produkt produkt={item} />
+            <Produkt produkt={item} key={item._id} />
           ))}
         </div>
 
@@ -90,4 +90,4 @@ const kosarica = () => {
   )
 }
 
-export default kosarica
+export default Kosarica

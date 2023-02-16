@@ -100,7 +100,7 @@ const ProductDetails = ({ produkt, produkti }) => {
               <div className="flex justify-center">
                 {produkt.image.map((img, index) => { if (index < 4) {
                   return (
-                      <img src={urlFor(img.asset._ref)} className="w-20 h-20 mr-4 object-contain" onClick={() => setSlider(index)} />
+                      <img src={urlFor(img.asset._ref)} className="w-20 h-20 mr-4 object-contain" onClick={() => setSlider(index)} key={produkt._id} />
                   )
                 }})}
                 {!produkt.zaliha && <p className="-translate-y-[25rem] max-md:-translate-x-28 md:-translate-x-32 bg-red-400 h-6 flex justify-center items-center text-gray-100 px-2 rounded-lg absolute">Nema na zalihi</p>}
@@ -138,7 +138,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                     <div onClick={() => setShowBoje(!showBoje)} className={showBoje ? "flex flex-col h-6 max-md:gap-2" : "hidden"}>
                       {produkt.boja.map((boja) => {
                         if(boja != izabranaBoja)
-                          return (<p onClick={() => setIzabranaBoja(boja)}>{boja}</p>)
+                          return (<p onClick={() => setIzabranaBoja(boja)} key={boja}>{boja}</p>)
                       })}
                     </div>
                   </div>
@@ -153,7 +153,7 @@ const ProductDetails = ({ produkt, produkti }) => {
                     <div onClick={() => setShowVelicina(!showVelicina)} className={showVelicina ? "flex flex-col h-6" : "hidden"}>
                       {produkt.velicina.map((vel) => {
                         if (vel != izabranaVelicina)
-                          return (<p onClick={() => setIzabranaVelicina(vel)}>{vel}</p>)
+                          return (<p onClick={() => setIzabranaVelicina(vel)} key={vel}>{vel}</p>)
                       })}
                     </div>
                   </div>
@@ -206,7 +206,7 @@ const ProductDetails = ({ produkt, produkti }) => {
 
             <div ref={sliderRef} className="flex md:w-[80rem] max-md:w-screen max-md:overflow-hidden keen-slider">
             {produkti?.map((slicniProdukt) => (
-              <div className="w-64 flex flex-col pt-8 items-center keen-slider__slide">
+              <div className="w-64 flex flex-col pt-8 items-center keen-slider__slide" key={slicniProdukt._id}>
                 <Link href={`${slicniProdukt.slug.current}`}>
                   <div className="bg-green-800 border-2 border-gray-200">
                     <img src={urlFor(slicniProdukt.image[0].asset._ref)} alt="Product image" className="w-72 h-72 object-contain" />

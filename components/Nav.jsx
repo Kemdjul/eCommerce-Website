@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useStateContext } from '../context/StateContext';
 
 import Burger from './nav/Burger';
-import KosaricaSidebar from './kosaricaSidebar';
+import KosaricaSidebar from './KosaricaSidebar';
 import Pretrazi from './nav/Pretrazi';
 
 import Image from 'next/image';
